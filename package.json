@@ -1,0 +1,9 @@
+{
+  "name": "aidonic-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev:web": "pnpm --filter web-next dev",
+    "dev:mobile": "pnpm --filter mobile-react-native start"
+  }
+}
