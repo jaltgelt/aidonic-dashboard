@@ -7,16 +7,157 @@
       "status": "Planned",
       "beneficiaries": 1200,
       "aidType": "Food",
-      "deliveryChannel": "Vouchers"
+      "deliveryChannel": "Vouchers",
+      "beneficiaryList": [
+        { "id": "bnf--001", "name": "Jane Doe" },
+        { "id": "bnf--002", "name": "John Smith" },
+        { "id": "bnf--003", "name": "Maria Garcia" }
+      ]
     },
     {
       "id": "dst--002",
       "region": "Eastern Province",
-      "date": "2025-06-10",
+      "date": "2025-05-10",
       "status": "Completed",
       "beneficiaries": 850,
       "aidType": "Medical",
-      "deliveryChannel": "Direct Distribution"
+      "deliveryChannel": "Direct Distribution",
+      "beneficiaryList": [
+        { "id": "bnf--004", "name": "Ahmed Hassan" },
+        { "id": "bnf--005", "name": "Fatima Ali" },
+        { "id": "bnf--006", "name": "Omar Khalil" }
+      ]
+    },
+    {
+      "id": "dst--003",
+      "region": "West Nile",
+      "date": "2025-05-20",
+      "status": "In Progress",
+      "beneficiaries": 400,
+      "aidType": "Shelter",
+      "deliveryChannel": "Mobile Units",
+      "beneficiaryList": [
+        { "id": "bnf--007", "name": "Sarah Johnson" },
+        { "id": "bnf--008", "name": "Michael Brown" }
+      ]
+    },
+    {
+      "id": "dst--004",
+      "region": "Northern Region",
+      "date": "2025-05-15",
+      "status": "Completed",
+      "beneficiaries": 1000,
+      "aidType": "Water",
+      "deliveryChannel": "Community Centers",
+      "beneficiaryList": [
+        { "id": "bnf--009", "name": "David Wilson" },
+        { "id": "bnf--010", "name": "Lisa Anderson" },
+        { "id": "bnf--011", "name": "Robert Taylor" }
+      ]
+    },
+    {
+      "id": "dst--005",
+      "region": "Central Province",
+      "date": "2025-06-20",
+      "status": "Planned",
+      "beneficiaries": 750,
+      "aidType": "Education",
+      "deliveryChannel": "Schools",
+      "beneficiaryList": [
+        { "id": "bnf--012", "name": "Emma Davis" },
+        { "id": "bnf--013", "name": "James Miller" }
+      ]
+    },
+    {
+      "id": "dst--006",
+      "region": "Southern Region",
+      "date": "2025-06-05",
+      "status": "In Progress",
+      "beneficiaries": 600,
+      "aidType": "Food",
+      "deliveryChannel": "Vouchers",
+      "beneficiaryList": [
+        { "id": "bnf--014", "name": "Sophia Chen" },
+        { "id": "bnf--015", "name": "William Lee" }
+      ]
+    },
+    {
+      "id": "dst--007",
+      "region": "Eastern Province",
+      "date": "2025-06-12",
+      "status": "Planned",
+      "beneficiaries": 900,
+      "aidType": "Medical",
+      "deliveryChannel": "Hospitals",
+      "beneficiaryList": [
+        { "id": "bnf--016", "name": "Olivia White" },
+        { "id": "bnf--017", "name": "Daniel Martinez" }
+      ]
+    },
+    {
+      "id": "dst--008",
+      "region": "West Nile",
+      "date": "2025-06-18",
+      "status": "Completed",
+      "beneficiaries": 550,
+      "aidType": "Shelter",
+      "deliveryChannel": "Direct Distribution",
+      "beneficiaryList": [
+        { "id": "bnf--018", "name": "Ava Thompson" },
+        { "id": "bnf--019", "name": "Ethan Garcia" }
+      ]
+    },
+    {
+      "id": "dst--009",
+      "region": "Northern Region",
+      "date": "2025-06-25",
+      "status": "Planned",
+      "beneficiaries": 800,
+      "aidType": "Water",
+      "deliveryChannel": "Mobile Units",
+      "beneficiaryList": [
+        { "id": "bnf--020", "name": "Mia Rodriguez" },
+        { "id": "bnf--021", "name": "Noah Lewis" }
+      ]
+    },
+    {
+      "id": "dst--010",
+      "region": "Central Province",
+      "date": "2025-06-08",
+      "status": "In Progress",
+      "beneficiaries": 450,
+      "aidType": "Education",
+      "deliveryChannel": "Community Centers",
+      "beneficiaryList": [
+        { "id": "bnf--022", "name": "Isabella Clark" },
+        { "id": "bnf--023", "name": "Lucas Hall" }
+      ]
+    },
+    {
+      "id": "dst--011",
+      "region": "Southern Region",
+      "date": "2025-06-22",
+      "status": "Completed",
+      "beneficiaries": 1200,
+      "aidType": "Food",
+      "deliveryChannel": "Vouchers",
+      "beneficiaryList": [
+        { "id": "bnf--024", "name": "Charlotte Young" },
+        { "id": "bnf--025", "name": "Mason King" }
+      ]
+    },
+    {
+      "id": "dst--012",
+      "region": "Eastern Province",
+      "date": "2025-06-30",
+      "status": "Planned",
+      "beneficiaries": 950,
+      "aidType": "Medical",
+      "deliveryChannel": "Hospitals",
+      "beneficiaryList": [
+        { "id": "bnf--026", "name": "Amelia Wright" },
+        { "id": "bnf--027", "name": "Henry Lopez" }
+      ]
     }
   ]
 }

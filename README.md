@@ -10,21 +10,21 @@ This project is built as a **monorepo** using pnpm workspaces, and follows a **m
 
 ```
 packages/web-next/
-├── public/                      → Static assets  
-├── src/  
-│   ├── app/                    → App Router layout, routing, metadata  
-│   ├── features/               → Domain features (e.g. Distributions, Charts)  
-│   │   └── distributions/  
-│   │       ├── components/     → Presentational UI components  
-│   │       ├── containers/     → Container components with business logic  
-│   │       ├── hooks/          → Custom hooks for fetching and state  
-│   │       ├── services/       → API access (mocked or real)  
-│   │       ├── types/          → TypeScript models  
-│   │       └── index.ts        → Barrel exports  
-│   ├── shared/                 → Reusable UI: buttons, layout, inputs  
-│   └── lib/                    → Utilities, constants, MSW handlers  
-├── .eslintrc.json  
-├── tailwind.config.ts  
+├── public/                      → Static assets
+├── src/
+│   ├── app/                    → App Router layout, routing, metadata
+│   ├── features/               → Domain features (e.g. Distributions, Charts)
+│   │   └── distributions/
+│   │       ├── components/     → Presentational UI components
+│   │       ├── containers/     → Container components with business logic
+│   │       ├── hooks/          → Custom hooks for fetching and state
+│   │       ├── services/       → API access (mocked or real)
+│   │       ├── types/          → TypeScript models
+│   │       └── index.ts        → Barrel exports
+│   ├── shared/                 → Reusable UI: buttons, layout, inputs
+│   └── lib/                    → Utilities, constants, MSW handlers
+├── .eslintrc.json
+├── tailwind.config.ts
 └── tsconfig.json
 ```
 
@@ -106,6 +106,34 @@ The mobile app (`packages/mobile-app/`) will follow the same modular feature-bas
 - Pages coming next
 - Mobile app to be scaffolded
 
+## 🚀 Quick Start
+
+### Run Both Services (Recommended)
+
+```bash
+pnpm start
+```
+
+This will start:
+
+- Mock API server on port 3002
+- Web application on port 3000
+
+### Run Services Separately
+
+```bash
+# Terminal 1 - Mock API
+pnpm dev:api
+
+# Terminal 2 - Web App
+pnpm dev:web
+```
+
+## 📱 Access the Application
+
+- **Web Dashboard**: http://localhost:3000
+- **Mock API**: http://localhost:3002/distributions
+
 ## Setup Instructions (Web)
 
 ```bash
@@ -121,4 +149,5 @@ Buenos Aires, Argentina
 Built with care for the Aidonic technical interview.
 
 ## License
+
 This project is for evaluation purposes only.
