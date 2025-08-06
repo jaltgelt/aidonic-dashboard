@@ -42,3 +42,6 @@ packages/*/.turbo/
 # Env vars
 .env
 .env.*
+
+# Misc
+.prettierrc
