@@ -20,20 +20,22 @@ interface DistributionTableProps {
 
 const DistributionTable: React.FC<DistributionTableProps> = ({ distributions }) => {
   return (
-    <Table>
+    <Table className="min-w-[800px]">
       <TableHeader>
         <TableRow className="border-b border-table-border bg-table-header">
-          <TableHead className="font-semibold text-foreground py-4 px-6 text-left">
+          <TableHead className="font-semibold text-foreground py-4 px-6 text-left whitespace-nowrap">
             Region
           </TableHead>
-          <TableHead className="font-semibold text-foreground py-4 px-6 text-left">Date</TableHead>
-          <TableHead className="font-semibold text-foreground py-4 px-6 text-left">
+          <TableHead className="font-semibold text-foreground py-4 px-6 text-left whitespace-nowrap">
+            Date
+          </TableHead>
+          <TableHead className="font-semibold text-foreground py-4 px-6 text-left whitespace-nowrap">
             Status
           </TableHead>
-          <TableHead className="font-semibold text-foreground py-4 px-6 text-left">
+          <TableHead className="font-semibold text-foreground py-4 px-6 text-left whitespace-nowrap">
             Beneficiaries
           </TableHead>
-          <TableHead className="font-semibold text-foreground py-4 px-6 text-left">
+          <TableHead className="font-semibold text-foreground py-4 px-6 text-left whitespace-nowrap">
             Action
           </TableHead>
         </TableRow>

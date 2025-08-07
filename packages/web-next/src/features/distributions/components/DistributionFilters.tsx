@@ -1,6 +1,9 @@
 'use client';
 
 import React from 'react';
+import { RotateCcw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { DISTRIBUTION_CONSTANTS } from '../constants';
 import {
   Select,
   SelectContent,
@@ -16,6 +19,7 @@ interface FiltersProps {
   selectedStatus: string;
   onRegionChange: (value: string) => void;
   onStatusChange: (value: string) => void;
+  onReset: () => void;
 }
 
 const Filters: React.FC<FiltersProps> = ({
@@ -25,15 +29,19 @@ const Filters: React.FC<FiltersProps> = ({
   selectedStatus,
   onRegionChange,
   onStatusChange,
+  onReset,
 }) => {
+  const hasActiveFilters =
+    selectedRegion !== DISTRIBUTION_CONSTANTS.DEFAULT_REGION ||
+    selectedStatus !== DISTRIBUTION_CONSTANTS.DEFAULT_STATUS;
   return (
     <div className="mb-6 space-y-4">
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row gap-4 items-end">
         <div className="flex flex-col">
           <label className="text-sm font-medium text-foreground mb-2">Region</label>
           <Select value={selectedRegion} onValueChange={onRegionChange}>
             <SelectTrigger className="w-64 bg-white border border-input">
-              <SelectValue placeholder="Select Region" />
+              <SelectValue placeholder="Region" />
             </SelectTrigger>
             <SelectContent className="bg-white border border-input">
               {regions.map((region) => (
@@ -49,7 +57,7 @@ const Filters: React.FC<FiltersProps> = ({
           <label className="text-sm font-medium text-foreground mb-2">Status</label>
           <Select value={selectedStatus} onValueChange={onStatusChange}>
             <SelectTrigger className="w-64 bg-white border border-input">
-              <SelectValue placeholder="Select Status" />
+              <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent className="bg-white border border-input">
               {statuses.map((status) => (
@@ -60,6 +68,18 @@ const Filters: React.FC<FiltersProps> = ({
             </SelectContent>
           </Select>
         </div>
+
+        {hasActiveFilters && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onReset}
+            className="h-10 px-3 border-border hover:bg-muted/50"
+          >
+            <RotateCcw className="w-4 h-4 mr-2" />
+            Reset
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -75,6 +75,12 @@ export const useDistributions = () => {
     setCurrentPage(page);
   };
 
+  const handleReset = () => {
+    setSelectedRegion(DISTRIBUTION_CONSTANTS.DEFAULT_REGION);
+    setSelectedStatus(DISTRIBUTION_CONSTANTS.DEFAULT_STATUS);
+    setCurrentPage(1);
+  };
+
   return {
     selectedRegion,
     selectedStatus,
@@ -88,5 +94,6 @@ export const useDistributions = () => {
     handleRegionChange,
     handleStatusChange,
     handlePageChange,
+    handleReset,
   };
 };
