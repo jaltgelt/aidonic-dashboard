@@ -80,7 +80,7 @@ const DistributionDetails: React.FC<DistributionDetailsProps> = ({ distribution 
           </div>
 
           {/* Beneficiary List - Full width for better readability */}
-          {distribution.beneficiaryList && distribution.beneficiaryList.length > 0 && (
+          {distribution.beneficiaryList && distribution.beneficiaryList.length > 0 ? (
             <div className="border-t border-border pt-6">
               <p className="text-sm font-medium text-muted-foreground mb-3">Beneficiary List</p>
               <div className="bg-muted/20 rounded-md p-4">
@@ -91,6 +91,13 @@ const DistributionDetails: React.FC<DistributionDetailsProps> = ({ distribution 
                     </p>
                   ))}
                 </div>
+              </div>
+            </div>
+          ) : (
+            <div className="border-t border-border pt-6">
+              <p className="text-sm font-medium text-muted-foreground mb-3">Beneficiary List</p>
+              <div className="bg-muted/20 rounded-md p-4">
+                <p className="text-foreground text-sm">No beneficiary details available</p>
               </div>
             </div>
           )}

@@ -17,7 +17,7 @@ const Navigation: React.FC = () => {
                 Distributions
               </Link>
               <Link href="/charts" className="text-foreground hover:text-primary transition-colors">
-                Charts
+                Analytics
               </Link>
             </div>
           </div>

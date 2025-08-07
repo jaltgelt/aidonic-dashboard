@@ -26,25 +26,38 @@ src/
 │   ├── layout.tsx      # Root layout
 │   └── globals.css     # Global styles
 ├── features/           # Feature-based modules
-│   └── distributions/  # Distribution feature
-│       ├── components/ # Feature-specific components
-│       │   ├── DistributionFilters.tsx
-│       │   ├── DistributionTable.tsx
-│       │   ├── DistributionPagination.tsx
-│       │   └── DistributionDetails.tsx
-│       ├── containers/ # Business logic containers
-│       │   ├── DistributionList.container.tsx
-│       │   └── DistributionDetails.container.tsx
-│       ├── hooks/      # Custom hooks
-│       │   ├── useDistributions.ts
-│       │   └── useDistributionDetails.ts
-│       ├── pages/      # Page components
-│       │   ├── DistributionListPage.tsx
-│       │   └── DistributionDetailsPage.tsx
-│       ├── constants/  # Feature constants
-│       │   └── index.ts
-│       └── api/        # API layer
-│           └── getDistributions.ts
+│   ├── distributions/  # Distribution feature
+│   │   ├── components/ # Feature-specific components
+│   │   │   ├── DistributionFilters.tsx
+│   │   │   ├── DistributionTable.tsx
+│   │   │   ├── DistributionPagination.tsx
+│   │   │   └── DistributionDetails.tsx
+│   │   ├── containers/ # Business logic containers
+│   │   │   ├── DistributionList.container.tsx
+│   │   │   └── DistributionDetails.container.tsx
+│   │   ├── hooks/      # Custom hooks
+│   │   │   ├── useDistributions.ts
+│   │   │   └── useDistributionDetails.ts
+│   │   ├── pages/      # Page components
+│   │   │   ├── DistributionListPage.tsx
+│   │   │   └── DistributionDetailsPage.tsx
+│   │   └── constants/  # Feature constants
+│   │       └── index.ts
+│   └── analytics/      # Analytics feature
+│       ├── components/ # Chart components
+│       │   ├── AidTypePieChart.tsx
+│       │   ├── BeneficiariesLineChart.tsx
+│       │   └── ChartsContainer.tsx
+│       ├── containers/ # Analytics containers
+│       │   └── Analytics.container.tsx
+│       ├── hooks/      # Analytics hooks
+│       │   └── useAnalytics.ts
+│       ├── pages/      # Analytics pages
+│       │   └── AnalyticsPage.tsx
+│       ├── utils/      # Data transformers
+│       │   └── chartDataTransformers.ts
+│       └── constants/  # Chart constants
+│           └── index.ts
 ├── shared/             # Shared utilities and components
 │   ├── components/     # Reusable UI components
 │   │   └── Navigation.tsx
@@ -310,7 +323,7 @@ cd packages/web-next && pnpm dev
 
 ## 🔮 Current Features
 
-### Distribution List
+### 📋 Distribution List
 
 - ✅ **Data Fetching**: Real-time data from mock API
 - ✅ **Filtering**: Region and status filters
@@ -321,7 +334,7 @@ cd packages/web-next && pnpm dev
 - ✅ **Error Handling**: Graceful error display
 - ✅ **Navigation**: "View Details" buttons linking to individual distributions
 
-### Distribution Details
+### 📄 Distribution Details
 
 - ✅ **Individual Distribution View**: Complete details for single distribution
 - ✅ **Responsive Layout**: Adaptive grid system (3-2-1 pattern on mobile, 3-3 pattern on desktop)
@@ -332,14 +345,24 @@ cd packages/web-next && pnpm dev
 - ✅ **Error Handling**: Graceful error display and "not found" states
 - ✅ **Professional UI**: Clean design with proper spacing and typography
 
-### UI/UX Features
+### 📈 Analytics Dashboard
+
+- ✅ **Aid Type Pie Chart**: Distribution by aid type with custom colors
+- ✅ **Beneficiaries Over Time**: Line chart showing monthly trends
+- ✅ **Real Data Integration**: Data from distributions API
+- ✅ **Interactive Tooltips**: Formatted data display on hover
+- ✅ **Professional Styling**: Custom color scheme and responsive design
+- ✅ **Data Aggregation**: Monthly beneficiary totals for time series
+- ✅ **Back Navigation**: Easy return to main dashboard
+
+### 🎨 UI/UX Features
 
 - ✅ **Clean Design**: Professional, modern interface
 - ✅ **Accessibility**: Keyboard navigation, proper ARIA labels
 - ✅ **Interactive Elements**: Hover states, focus management
 - ✅ **Consistent Styling**: Unified design system
 - ✅ **Responsive Design**: Perfect experience on all screen sizes
-- ✅ **Navigation Flow**: Seamless user journey between list and details
+- ✅ **Navigation Flow**: Seamless user journey between all pages
 
 ## 🔮 Future Enhancements
 

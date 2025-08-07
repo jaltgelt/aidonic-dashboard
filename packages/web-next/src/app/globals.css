@@ -44,6 +44,13 @@
     --chart-light-blue: 220 40% 65%;
     --chart-pale-blue: 220 30% 80%;
 
+    /* Aid type specific colors */
+    --aid-food: 220 60% 35%; /* Dark blue */
+    --aid-medical: 220 50% 50%; /* Medium blue */
+    --aid-shelter: 220 40% 65%; /* Light blue */
+    --aid-water: 220 30% 80%; /* Pale blue */
+    --aid-education: 220 30% 80%; /* Pale blue */
+
     /* Table specific */
     --table-border: 0 0% 85%;
     --table-header: 0 0% 98%;
@@ -113,5 +120,51 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Remove focus outlines and borders from chart elements */
+  .recharts-wrapper,
+  .recharts-wrapper *,
+  .recharts-responsive-container,
+  .recharts-responsive-container *,
+  .recharts-wrapper svg,
+  .recharts-wrapper svg *,
+  .recharts-pie,
+  .recharts-pie *,
+  .recharts-line,
+  .recharts-line * {
+    outline: none !important;
+    border: none !important;
+    stroke: none !important;
+  }
+
+  /* Remove any default SVG borders */
+  svg {
+    border: none !important;
+    outline: none !important;
+  }
+
+  /* Remove borders from chart containers */
+  .recharts-wrapper {
+    border: none !important;
+    outline: none !important;
+  }
+
+  /* Remove all possible borders from chart elements */
+  [class*='recharts'] {
+    border: none !important;
+    outline: none !important;
+  }
+
+  /* Remove borders from SVG elements */
+  svg[class*='recharts'] {
+    border: none !important;
+    outline: none !important;
+  }
+
+  /* Remove borders from chart containers */
+  .h-80 {
+    border: none !important;
+    outline: none !important;
   }
 }
