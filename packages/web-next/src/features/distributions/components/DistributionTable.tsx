@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -55,15 +56,15 @@ const DistributionTable: React.FC<DistributionTableProps> = ({ distributions }) 
                 {formatNumber(distribution.beneficiaries)}
               </TableCell>
               <TableCell className="py-4 px-6">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                  disabled
-                  title="Details page coming in next PR"
-                >
-                  View Details
-                </Button>
+                <Link href={`/distributions/${distribution.id}`}>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    View Details
+                  </Button>
+                </Link>
               </TableCell>
             </TableRow>
           ))

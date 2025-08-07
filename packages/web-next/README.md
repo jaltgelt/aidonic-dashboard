@@ -18,18 +18,29 @@ This application follows the **Container/Presentation pattern** and **SOLID prin
 
 ```
 src/
+├── app/                # Next.js App Router
+│   ├── page.tsx        # Main dashboard page
+│   ├── distributions/  # Distribution routes
+│   │   └── [id]/
+│   │       └── page.tsx
+│   ├── layout.tsx      # Root layout
+│   └── globals.css     # Global styles
 ├── features/           # Feature-based modules
 │   └── distributions/  # Distribution feature
 │       ├── components/ # Feature-specific components
 │       │   ├── DistributionFilters.tsx
 │       │   ├── DistributionTable.tsx
-│       │   └── DistributionPagination.tsx
+│       │   ├── DistributionPagination.tsx
+│       │   └── DistributionDetails.tsx
 │       ├── containers/ # Business logic containers
-│       │   └── DistributionList.container.tsx
+│       │   ├── DistributionList.container.tsx
+│       │   └── DistributionDetails.container.tsx
 │       ├── hooks/      # Custom hooks
-│       │   └── useDistributions.ts
+│       │   ├── useDistributions.ts
+│       │   └── useDistributionDetails.ts
 │       ├── pages/      # Page components
-│       │   └── DistributionListPage.tsx
+│       │   ├── DistributionListPage.tsx
+│       │   └── DistributionDetailsPage.tsx
 │       ├── constants/  # Feature constants
 │       │   └── index.ts
 │       └── api/        # API layer
@@ -124,11 +135,29 @@ cd packages/web-next && pnpm dev
 - **Purpose**: Business logic container for distribution list
 - **Responsibilities**: State management, data filtering, pagination logic
 
+#### DistributionDetailsPage
+
+- **Location**: `features/distributions/pages/DistributionDetailsPage.tsx`
+- **Purpose**: Page component for individual distribution details
+- **Responsibilities**: Layout composition, navigation integration
+
+#### DistributionDetailsContainer
+
+- **Location**: `features/distributions/containers/DistributionDetails.container.tsx`
+- **Purpose**: Business logic container for distribution details
+- **Responsibilities**: Data fetching, loading states, error handling
+
 #### useDistributions Hook
 
 - **Location**: `features/distributions/hooks/useDistributions.ts`
 - **Purpose**: Custom hook for distribution list logic
 - **Responsibilities**: API data fetching, filtering, pagination, state management
+
+#### useDistributionDetails Hook
+
+- **Location**: `features/distributions/hooks/useDistributionDetails.ts`
+- **Purpose**: Custom hook for distribution details logic
+- **Responsibilities**: Individual distribution data fetching, state management
 
 ### Presentation Components
 
@@ -143,13 +172,20 @@ cd packages/web-next && pnpm dev
 - **Location**: `features/distributions/components/DistributionTable.tsx`
 - **Purpose**: Table display for distributions
 - **Props**: distributions array
-- **Features**: Empty state handling, disabled "View Details" buttons
+- **Features**: Empty state handling, "View Details" navigation
 
 #### DistributionPagination
 
 - **Location**: `features/distributions/components/DistributionPagination.tsx`
 - **Purpose**: Pagination navigation
 - **Props**: current page, total pages, page change handler
+
+#### DistributionDetails
+
+- **Location**: `features/distributions/components/DistributionDetails.tsx`
+- **Purpose**: Detailed view of individual distribution
+- **Props**: distribution object
+- **Features**: Responsive layout, back navigation, beneficiary list
 
 ### UI Components
 
@@ -283,6 +319,18 @@ cd packages/web-next && pnpm dev
 - ✅ **Empty States**: Proper handling of no results
 - ✅ **Loading States**: User feedback during data loading
 - ✅ **Error Handling**: Graceful error display
+- ✅ **Navigation**: "View Details" buttons linking to individual distributions
+
+### Distribution Details
+
+- ✅ **Individual Distribution View**: Complete details for single distribution
+- ✅ **Responsive Layout**: Adaptive grid system (3-2-1 pattern on mobile, 3-3 pattern on desktop)
+- ✅ **Information Display**: Region, Date, Status, Aid Type, Delivery Channel, Total Beneficiaries
+- ✅ **Beneficiary List**: Numbered list of beneficiaries with proper formatting
+- ✅ **Back Navigation**: Easy return to distribution list
+- ✅ **Loading States**: User feedback during data loading
+- ✅ **Error Handling**: Graceful error display and "not found" states
+- ✅ **Professional UI**: Clean design with proper spacing and typography
 
 ### UI/UX Features
 
@@ -290,13 +338,15 @@ cd packages/web-next && pnpm dev
 - ✅ **Accessibility**: Keyboard navigation, proper ARIA labels
 - ✅ **Interactive Elements**: Hover states, focus management
 - ✅ **Consistent Styling**: Unified design system
+- ✅ **Responsive Design**: Perfect experience on all screen sizes
+- ✅ **Navigation Flow**: Seamless user journey between list and details
 
 ## 🔮 Future Enhancements
 
 ### Planned Features
 
-- [ ] Distribution details page
 - [ ] Charts page with data visualization
+- [ ] Distribution editing functionality
 - [ ] Real API integration
 - [ ] Authentication system
 - [ ] Mobile responsive improvements

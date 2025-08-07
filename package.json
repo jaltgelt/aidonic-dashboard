@@ -8,5 +8,8 @@
     "dev:api": "cd mock-api && pnpm dev",
     "dev:all": "concurrently \"pnpm dev:api\" \"pnpm dev:web\"",
     "start": "pnpm dev:all"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }
