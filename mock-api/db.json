@@ -3,9 +3,119 @@
     {
       "id": "dst--001",
       "region": "West Nile",
-      "date": "2025-06-15",
-      "status": "Planned",
+      "date": "2025-01-15",
+      "status": "Completed",
+      "beneficiaries": 800,
+      "aidType": "Food",
+      "deliveryChannel": "Vouchers"
+    },
+    {
+      "id": "dst--002",
+      "region": "Eastern Province",
+      "date": "2025-02-10",
+      "status": "Completed",
       "beneficiaries": 1200,
+      "aidType": "Medical",
+      "deliveryChannel": "Direct Distribution"
+    },
+    {
+      "id": "dst--003",
+      "region": "West Nile",
+      "date": "2025-03-20",
+      "status": "Completed",
+      "beneficiaries": 950,
+      "aidType": "Shelter",
+      "deliveryChannel": "Mobile Units"
+    },
+    {
+      "id": "dst--004",
+      "region": "Northern Region",
+      "date": "2025-04-15",
+      "status": "Completed",
+      "beneficiaries": 1100,
+      "aidType": "Water",
+      "deliveryChannel": "Community Centers"
+    },
+    {
+      "id": "dst--005",
+      "region": "Central Province",
+      "date": "2025-05-20",
+      "status": "Completed",
+      "beneficiaries": 1350,
+      "aidType": "Education",
+      "deliveryChannel": "Schools"
+    },
+    {
+      "id": "dst--006",
+      "region": "Southern Region",
+      "date": "2025-06-05",
+      "status": "In Progress",
+      "beneficiaries": 1600,
+      "aidType": "Food",
+      "deliveryChannel": "Vouchers"
+    },
+    {
+      "id": "dst--007",
+      "region": "Eastern Province",
+      "date": "2025-06-12",
+      "status": "Planned",
+      "beneficiaries": 1900,
+      "aidType": "Medical",
+      "deliveryChannel": "Hospitals"
+    },
+    {
+      "id": "dst--008",
+      "region": "West Nile",
+      "date": "2025-06-18",
+      "status": "Completed",
+      "beneficiaries": 1800,
+      "aidType": "Shelter",
+      "deliveryChannel": "Direct Distribution"
+    },
+    {
+      "id": "dst--009",
+      "region": "Northern Region",
+      "date": "2025-06-25",
+      "status": "Planned",
+      "beneficiaries": 2200,
+      "aidType": "Water",
+      "deliveryChannel": "Mobile Units"
+    },
+    {
+      "id": "dst--010",
+      "region": "Central Province",
+      "date": "2025-06-08",
+      "status": "In Progress",
+      "beneficiaries": 1400,
+      "aidType": "Education",
+      "deliveryChannel": "Community Centers"
+    },
+    {
+      "id": "dst--011",
+      "region": "Southern Region",
+      "date": "2025-06-22",
+      "status": "Completed",
+      "beneficiaries": 2500,
+      "aidType": "Food",
+      "deliveryChannel": "Vouchers"
+    },
+    {
+      "id": "dst--012",
+      "region": "Eastern Province",
+      "date": "2025-06-30",
+      "status": "Planned",
+      "beneficiaries": 2800,
+      "aidType": "Medical",
+      "deliveryChannel": "Hospitals"
+    }
+  ],
+  "distributionDetails": [
+    {
+      "id": "dst--001",
+      "region": "West Nile",
+      "date": "2025-01-15",
+      "status": "Completed",
+      "beneficiaries": 800,
       "aidType": "Food",
       "deliveryChannel": "Vouchers",
       "beneficiaryList": [
@@ -17,9 +127,9 @@
     {
       "id": "dst--002",
       "region": "Eastern Province",
-      "date": "2025-05-10",
+      "date": "2025-02-10",
       "status": "Completed",
-      "beneficiaries": 850,
+      "beneficiaries": 1200,
       "aidType": "Medical",
       "deliveryChannel": "Direct Distribution",
       "beneficiaryList": [
@@ -31,9 +141,9 @@
     {
       "id": "dst--003",
       "region": "West Nile",
-      "date": "2025-05-20",
-      "status": "In Progress",
-      "beneficiaries": 400,
+      "date": "2025-03-20",
+      "status": "Completed",
+      "beneficiaries": 950,
       "aidType": "Shelter",
       "deliveryChannel": "Mobile Units",
       "beneficiaryList": [
@@ -44,9 +154,9 @@
     {
       "id": "dst--004",
       "region": "Northern Region",
-      "date": "2025-05-15",
+      "date": "2025-04-15",
       "status": "Completed",
-      "beneficiaries": 1000,
+      "beneficiaries": 1100,
       "aidType": "Water",
       "deliveryChannel": "Community Centers",
       "beneficiaryList": [
@@ -58,9 +168,9 @@
     {
       "id": "dst--005",
       "region": "Central Province",
-      "date": "2025-06-20",
-      "status": "Planned",
-      "beneficiaries": 750,
+      "date": "2025-05-20",
+      "status": "Completed",
+      "beneficiaries": 1350,
       "aidType": "Education",
       "deliveryChannel": "Schools",
       "beneficiaryList": [
@@ -73,7 +183,7 @@
       "region": "Southern Region",
       "date": "2025-06-05",
       "status": "In Progress",
-      "beneficiaries": 600,
+      "beneficiaries": 1600,
       "aidType": "Food",
       "deliveryChannel": "Vouchers",
       "beneficiaryList": [
@@ -86,7 +196,7 @@
       "region": "Eastern Province",
       "date": "2025-06-12",
       "status": "Planned",
-      "beneficiaries": 900,
+      "beneficiaries": 1900,
       "aidType": "Medical",
       "deliveryChannel": "Hospitals",
       "beneficiaryList": [
@@ -99,7 +209,7 @@
       "region": "West Nile",
       "date": "2025-06-18",
       "status": "Completed",
-      "beneficiaries": 550,
+      "beneficiaries": 1800,
       "aidType": "Shelter",
       "deliveryChannel": "Direct Distribution",
       "beneficiaryList": [
@@ -112,7 +222,7 @@
       "region": "Northern Region",
       "date": "2025-06-25",
       "status": "Planned",
-      "beneficiaries": 800,
+      "beneficiaries": 2200,
       "aidType": "Water",
       "deliveryChannel": "Mobile Units",
       "beneficiaryList": [
@@ -125,7 +235,7 @@
       "region": "Central Province",
       "date": "2025-06-08",
       "status": "In Progress",
-      "beneficiaries": 450,
+      "beneficiaries": 1400,
       "aidType": "Education",
       "deliveryChannel": "Community Centers",
       "beneficiaryList": [
@@ -138,7 +248,7 @@
       "region": "Southern Region",
       "date": "2025-06-22",
       "status": "Completed",
-      "beneficiaries": 1200,
+      "beneficiaries": 2500,
       "aidType": "Food",
       "deliveryChannel": "Vouchers",
       "beneficiaryList": [
@@ -151,7 +261,7 @@
       "region": "Eastern Province",
       "date": "2025-06-30",
       "status": "Planned",
-      "beneficiaries": 950,
+      "beneficiaries": 2800,
       "aidType": "Medical",
       "deliveryChannel": "Hospitals",
       "beneficiaryList": [
