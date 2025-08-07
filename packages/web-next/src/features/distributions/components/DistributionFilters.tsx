@@ -36,11 +36,11 @@ const Filters: React.FC<FiltersProps> = ({
     selectedStatus !== DISTRIBUTION_CONSTANTS.DEFAULT_STATUS;
   return (
     <div className="mb-6 space-y-4">
-      <div className="flex flex-col sm:flex-row gap-4 items-end">
-        <div className="flex flex-col">
+      <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-end">
+        <div className="flex flex-col w-full lg:w-auto">
           <label className="text-sm font-medium text-foreground mb-2">Region</label>
           <Select value={selectedRegion} onValueChange={onRegionChange}>
-            <SelectTrigger className="w-64 bg-white border border-input">
+            <SelectTrigger className="w-full lg:w-64 bg-white border border-input">
               <SelectValue placeholder="Region" />
             </SelectTrigger>
             <SelectContent className="bg-white border border-input">
@@ -53,10 +53,10 @@ const Filters: React.FC<FiltersProps> = ({
           </Select>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full lg:w-auto">
           <label className="text-sm font-medium text-foreground mb-2">Status</label>
           <Select value={selectedStatus} onValueChange={onStatusChange}>
-            <SelectTrigger className="w-64 bg-white border border-input">
+            <SelectTrigger className="w-full lg:w-64 bg-white border border-input">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent className="bg-white border border-input">
@@ -74,7 +74,7 @@ const Filters: React.FC<FiltersProps> = ({
             variant="outline"
             size="sm"
             onClick={onReset}
-            className="h-10 px-3 border-border hover:bg-muted/50"
+            className="h-10 px-3 border-border hover:bg-muted/50 w-full lg:w-auto"
           >
             <RotateCcw className="w-4 h-4 mr-2" />
             Reset
