@@ -13,4 +13,4 @@ export const fetcher = async <T>(url: string): Promise<T> => {
 
 export const fetchDistributions = () => fetcher<Distribution[]>(API_CONFIG.ENDPOINTS.DISTRIBUTIONS);
 export const fetchDistributionById = (id: string) =>
-  fetcher<Distribution>(API_CONFIG.ENDPOINTS.DISTRIBUTION_BY_ID(id));
+  fetcher<Distribution>(`/distributionDetails/${id}`);
