@@ -20,6 +20,7 @@ const DistributionListContainer: React.FC = () => {
     handleRegionChange,
     handleStatusChange,
     handlePageChange,
+    handleReset,
   } = useDistributions();
 
   if (loading) {
@@ -39,9 +40,12 @@ const DistributionListContainer: React.FC = () => {
         selectedStatus={selectedStatus}
         onRegionChange={handleRegionChange}
         onStatusChange={handleStatusChange}
+        onReset={handleReset}
       />
       <div className="bg-white rounded-lg border border-table-border overflow-hidden shadow-sm">
-        <DistributionTable distributions={paginatedDistributions} />
+        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          <DistributionTable distributions={paginatedDistributions} />
+        </div>
         {paginatedDistributions.length > 0 && (
           <DistributionPagination
             currentPage={currentPage}
