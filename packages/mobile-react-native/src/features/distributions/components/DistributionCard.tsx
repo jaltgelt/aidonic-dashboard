@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Distribution } from '../types/distribution';
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import { Distribution } from '@aidonic/shared/types';
 
 interface DistributionCardProps {
   distribution: Distribution;
@@ -37,14 +37,21 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     borderWidth: 1,
     borderColor: '#e2e8f0', // Light border from web palette
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 2,
+    // Use boxShadow for web compatibility
+    ...(Platform.OS === 'web'
+      ? {
+          boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
+        }
+      : {
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.05,
+          shadowRadius: 2,
+          elevation: 2,
+        }),
   },
   header: {
     flexDirection: 'row',

@@ -18,7 +18,8 @@
   "author": "Juan Altgelt",
   "license": "MIT",
   "dependencies": {
-    "react": "^19.1.0"
+    "react": "19.0.0",
+    "@tanstack/react-query": "^5.84.1"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
@@ -52,6 +53,10 @@
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
       "default": "./dist/hooks/index.js"
+    },
+    "./api": {
+      "types": "./dist/api/index.d.ts",
+      "default": "./dist/api/index.js"
     }
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useDistributions } from '../hooks/useDistributions';
+import { useDistributions } from '@aidonic/shared/hooks';
 import DistributionListPage from '../pages/DistributionListScreen';
-import { Distribution } from '../types/distribution';
+import { Distribution } from '@aidonic/shared/types';
 import { RootStackParamList } from '../../../navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 

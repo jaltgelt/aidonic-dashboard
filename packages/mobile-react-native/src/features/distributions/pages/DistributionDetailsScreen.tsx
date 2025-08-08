@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
-import { Distribution } from '../types/distribution';
+import { Distribution } from '@aidonic/shared/types';
 
 interface DistributionDetailsPageProps {
   distribution?: Distribution;

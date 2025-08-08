@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRoute } from '@react-navigation/native';
-import { useDistributionDetails } from '../hooks/useDistributionDetails';
+import { useDistributionDetails } from '@aidonic/shared/hooks';
 import DistributionDetailsPage from '../pages/DistributionDetailsScreen';
 import { RootStackParamList } from '../../../navigation/types';
 import { RouteProp } from '@react-navigation/native';

@@ -20,6 +20,9 @@ importers:
 
   packages/mobile-react-native:
     dependencies:
+      '@aidonic/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@expo/metro-runtime':
         specifier: ~5.0.4
         version: 5.0.4(react-native@0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0))
@@ -69,9 +72,12 @@ importers:
 
   packages/shared:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.84.1
+        version: 5.84.1(react@19.0.0)
       react:
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: 19.0.0
+        version: 19.0.0
     devDependencies:
       '@types/node':
         specifier: ^20.0.0

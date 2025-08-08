@@ -1,0 +1,92 @@
+import { Distribution } from '../types/distribution';
+import { DISTRIBUTION_CONSTANTS } from '../constants/distribution';
+
+export const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+};
+
+export const formatNumber = (num: number): string => {
+  return num.toLocaleString();
+};
+
+export const getStatusColor = (status: string): string => {
+  switch (status.toLowerCase()) {
+    case 'completed':
+      return '#10b981'; // Green
+    case 'in progress':
+      return '#3b82f6'; // Blue
+    case 'pending':
+      return '#f59e0b'; // Yellow
+    case 'cancelled':
+      return '#ef4444'; // Red
+    default:
+      return '#64748b'; // Gray
+  }
+};
+
+export const filterDistributions = (
+  distributions: Distribution[],
+  filters: {
+    region?: string;
+    status?: string;
+  },
+): Distribution[] => {
+  return distributions.filter((distribution) => {
+    const regionMatch =
+      !filters.region ||
+      filters.region === DISTRIBUTION_CONSTANTS.DEFAULT_REGION ||
+      distribution.region === filters.region;
+
+    const statusMatch =
+      !filters.status ||
+      filters.status === DISTRIBUTION_CONSTANTS.DEFAULT_STATUS ||
+      distribution.status === filters.status;
+
+    return regionMatch && statusMatch;
+  });
+};
+
+export const paginateDistributions = (
+  distributions: Distribution[],
+  page: number,
+  itemsPerPage: number = DISTRIBUTION_CONSTANTS.ITEMS_PER_PAGE,
+): Distribution[] => {
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  return distributions.slice(startIndex, endIndex);
+};
+
+export const getUniqueRegions = (distributions: Distribution[]): string[] => {
+  const regions = [...new Set(distributions.map((d) => d.region))];
+  return [DISTRIBUTION_CONSTANTS.DEFAULT_REGION, ...regions];
+};
+
+export const getUniqueStatuses = (distributions: Distribution[]): string[] => {
+  const statuses = [...new Set(distributions.map((d) => d.status))];
+  return [DISTRIBUTION_CONSTANTS.DEFAULT_STATUS, ...statuses];
+};
+
+export const calculateTotalBeneficiaries = (distributions: Distribution[]): number => {
+  return distributions.reduce((total, distribution) => total + distribution.beneficiaries, 0);
+};
+
+export const getDistributionStats = (distributions: Distribution[]) => {
+  const totalDistributions = distributions.length;
+  const totalBeneficiaries = calculateTotalBeneficiaries(distributions);
+  const completedDistributions = distributions.filter((d) => d.status === 'Completed').length;
+  const inProgressDistributions = distributions.filter((d) => d.status === 'In Progress').length;
+
+  return {
+    totalDistributions,
+    totalBeneficiaries,
+    completedDistributions,
+    inProgressDistributions,
+    completionRate:
+      totalDistributions > 0 ? (completedDistributions / totalDistributions) * 100 : 0,
+  };
+};

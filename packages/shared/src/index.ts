@@ -12,3 +12,6 @@ export * from './lib';
 
 // Hooks
 export * from './hooks';
+
+// API
+export * from './api/distributionApi';

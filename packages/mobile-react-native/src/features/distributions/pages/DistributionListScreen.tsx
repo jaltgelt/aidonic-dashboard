@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
 import DistributionCard from '../components/DistributionCard';
-import { Distribution } from '../types/distribution';
+import { Distribution } from '@aidonic/shared/types';
 
 interface DistributionListPageProps {
   distributions?: Distribution[];
