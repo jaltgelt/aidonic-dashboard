@@ -1,19 +1,6 @@
 import { Distribution } from '../types/distribution';
 import { DISTRIBUTION_CONSTANTS } from '../constants/distribution';
 
-export const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-};
-
-export const formatNumber = (num: number): string => {
-  return num.toLocaleString();
-};
-
 export const getStatusColor = (status: string): string => {
   switch (status.toLowerCase()) {
     case 'completed':

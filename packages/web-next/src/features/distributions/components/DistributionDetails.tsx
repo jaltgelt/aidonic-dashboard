@@ -4,8 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Package } from 'lucide-react';
-import { Distribution } from '@/shared/types/distribution';
-import { formatDate, formatNumber } from '@/shared/utils/dateUtils';
+import { Distribution } from '@aidonic/shared/types';
+import { formatDate, formatNumber } from '@aidonic/shared/utils';
 
 interface DistributionDetailsProps {
   distribution: Distribution;

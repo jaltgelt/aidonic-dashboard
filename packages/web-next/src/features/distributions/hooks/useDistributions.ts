@@ -1,9 +1,16 @@
-import { useMemo, useState, useEffect } from 'react';
-import { Distribution } from '@/shared/types/distribution';
-import { DISTRIBUTION_CONSTANTS } from '../constants';
-import { fetchDistributions } from '@/shared/lib/fetcher';
+import { useMemo, useState } from 'react';
+import { useDistributions as useSharedDistributions } from '@aidonic/shared/hooks';
+import { DISTRIBUTION_CONSTANTS } from '@aidonic/shared/constants';
+import {
+  filterDistributions,
+  paginateDistributions,
+  getUniqueRegions,
+  getUniqueStatuses,
+} from '@aidonic/shared/utils';
 
 export const useDistributions = () => {
+  const { data: distributions = [], isLoading, error, refetch } = useSharedDistributions();
+
   const [selectedRegion, setSelectedRegion] = useState<string>(
     DISTRIBUTION_CONSTANTS.DEFAULT_REGION,
   );
@@ -11,54 +18,33 @@ export const useDistributions = () => {
     DISTRIBUTION_CONSTANTS.DEFAULT_STATUS,
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const [distributions, setDistributions] = useState<Distribution[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const loadDistributions = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await fetchDistributions();
-        setDistributions(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load distributions');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadDistributions();
-  }, []);
 
   const filteredDistributions = useMemo(() => {
-    return distributions.filter((dist: Distribution) => {
-      const regionMatch =
-        selectedRegion === DISTRIBUTION_CONSTANTS.DEFAULT_REGION || dist.region === selectedRegion;
-      const statusMatch =
-        selectedStatus === DISTRIBUTION_CONSTANTS.DEFAULT_STATUS || dist.status === selectedStatus;
-      return regionMatch && statusMatch;
+    return filterDistributions(distributions, {
+      region: selectedRegion,
+      status: selectedStatus,
     });
   }, [distributions, selectedRegion, selectedStatus]);
 
   const totalPages = Math.ceil(
     filteredDistributions.length / DISTRIBUTION_CONSTANTS.ITEMS_PER_PAGE,
   );
-  const paginatedDistributions = filteredDistributions.slice(
-    (currentPage - 1) * DISTRIBUTION_CONSTANTS.ITEMS_PER_PAGE,
-    currentPage * DISTRIBUTION_CONSTANTS.ITEMS_PER_PAGE,
-  );
+
+  const paginatedDistributions = useMemo(() => {
+    return paginateDistributions(
+      filteredDistributions,
+      currentPage,
+      DISTRIBUTION_CONSTANTS.ITEMS_PER_PAGE,
+    );
+  }, [filteredDistributions, currentPage]);
 
   // Extract unique regions and statuses from the data
   const regions = useMemo(() => {
-    const uniqueRegions = [...new Set(distributions.map((dist) => dist.region))];
-    return [DISTRIBUTION_CONSTANTS.DEFAULT_REGION, ...uniqueRegions];
+    return getUniqueRegions(distributions);
   }, [distributions]);
 
   const statuses = useMemo(() => {
-    const uniqueStatuses = [...new Set(distributions.map((dist) => dist.status))];
-    return [DISTRIBUTION_CONSTANTS.DEFAULT_STATUS, ...uniqueStatuses];
+    return getUniqueStatuses(distributions);
   }, [distributions]);
 
   const handleRegionChange = (value: string) => {
@@ -89,11 +75,12 @@ export const useDistributions = () => {
     paginatedDistributions,
     regions,
     statuses,
-    loading,
-    error,
+    loading: isLoading,
+    error: error?.message || null,
     handleRegionChange,
     handleStatusChange,
     handlePageChange,
     handleReset,
+    refetch,
   };
 };

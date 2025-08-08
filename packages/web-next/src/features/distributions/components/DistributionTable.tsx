@@ -11,8 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Distribution } from '@/shared/types/distribution';
-import { formatDate, formatNumber } from '@/shared/utils/dateUtils';
+import { Distribution } from '@aidonic/shared/types';
+import { formatDate, formatNumber } from '@aidonic/shared/utils';
 
 interface DistributionTableProps {
   distributions: Distribution[];
