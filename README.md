@@ -1,66 +1,41 @@
-# Aid Distribution Dashboard – Coding Challenge
+# Aid Distribution Dashboard
 
-This repository contains my solution for the **Aidonic Technical Challenge**. The goal is to build a cross-platform dashboard for managing and visualizing aid distributions, using modern frontend technologies and best architectural practices.
+A cross-platform dashboard application for managing and visualizing aid distributions, built with Next.js and React Native. This solution demonstrates modern frontend architecture, clean code practices, and comprehensive testing strategies.
 
-## ⚡ Quick Start (For Evaluators)
+## Overview
 
-```bash
-# 1. Install dependencies
-pnpm install
+This application provides a complete solution for viewing, filtering, and analyzing aid distribution data across web and mobile platforms. The implementation follows industry best practices including the Container/Presentation pattern, SOLID principles, and comprehensive test coverage.
 
-# 2. Set up environment
-cp .env.example .env
+## Features
 
-# 3. Start the web application
-pnpm start
+### Web Application (Next.js)
 
-# 4. Start the mobile application (in a new terminal)
-pnpm dev:mobile
+- Distribution list with advanced filtering and pagination
+- Detailed distribution information with beneficiary lists
+- Analytics dashboard with interactive charts
+- Responsive design with modern UI components
 
-# 5. Open applications in browser
-open http://localhost:3000  # Web Dashboard
-open http://localhost:8081  # Mobile App (Web)
-```
+### Mobile Application (React Native)
 
-**Expected Result**:
-
-- **Web**: Dashboard with table of aid distributions, filtering, pagination, and analytics charts
-- **Mobile**: Distribution list with cards, details screen, and pull-to-refresh functionality
-
-## 🎯 Challenge Requirements Delivered
-
-This solution implements all required features from the Aidonic Coding Task:
-
-### ✅ Web (Next.js)
-
-- Distribution List Page with table view, filters, and pagination
-- Distribution Details Page with full information and beneficiary list
-- Charts Page with pie chart (distributions by status) and line chart (distributions over time)
-
-### ✅ Mobile (React Native)
-
-- Distribution List Screen with scrollable cards
-- Details Screen with full distribution information
+- Distribution list with card-based interface
+- Detailed distribution screens
 - Pull-to-refresh functionality
-- Back navigation
+- Cross-platform navigation
 
-### ✅ Cross-Platform Features
+### Shared Infrastructure
 
-- Container/Presentation pattern implementation
-- SOLID principles and CLEAN Code practices
-- Shared business logic and types
-- Mocked API integration (JSON Server)
-- Unit testing with Jest and React Testing Library
+- Unified API layer with error handling
+- Shared business logic and type definitions
+- Comprehensive utility functions
+- Cross-platform data management
 
-## 🚀 Setup and Run Instructions
+## Technical Requirements
 
-### Prerequisites
+- Node.js (v18 or higher)
+- pnpm (v8 or higher)
+- Expo CLI (for mobile development)
 
-- **Node.js** (v18 or higher)
-- **pnpm** (v8 or higher)
-- **Expo CLI** (for mobile development) - Required for mobile app
-
-### Installation
+## Installation
 
 ```bash
 # Clone the repository
@@ -70,187 +45,194 @@ cd aidonic-dashboard
 # Install dependencies
 pnpm install
 
-# Copy environment variables (required for proper API configuration)
+# Configure environment variables
 cp .env.example .env
 ```
 
-### Run All Services
+## Development
+
+### Start All Services
 
 ```bash
-# Start mock API and web app
+# Start mock API and web application
 pnpm start
 ```
 
-This will start:
+This command starts:
 
-- **Mock API server** on port 3001
-- **Web application** on port 3000
+- Mock API server on port 3001
+- Web application on port 3000
 
-### Run Mobile App
+### Start Mobile Application
 
 ```bash
 # Start mobile development server
 pnpm dev:mobile
 ```
 
-This will start:
+This command starts:
 
-- **Mobile development server** (Expo) on port 8081
+- Expo development server on port 8081
 
 ### Run Tests
 
 ```bash
-# Run all tests
+# Execute all test suites
 pnpm test
 
 # Run tests in watch mode (web only)
 pnpm test:watch
 
-# Run tests with coverage
+# Generate test coverage report
 pnpm test:coverage
 ```
 
-**Test Coverage**:
+Test coverage includes:
 
-- **Web**: Component tests with React Testing Library
-- **Mobile**: Component tests with React Native Testing Library
-- **Shared**: Unit tests for utilities and business logic
+- Web components with React Testing Library
+- Mobile components with React Native Testing Library
+- Shared utilities and business logic
 
-### Run Services Separately
+### Individual Service Management
 
 ```bash
 # Terminal 1 - Mock API
 pnpm dev:api
 
-# Terminal 2 - Web App
+# Terminal 2 - Web Application
 pnpm dev:web
 
-# Terminal 3 - Mobile App
+# Terminal 3 - Mobile Application
 pnpm dev:mobile
 ```
 
-### Access the Application
+## Application Access
 
-- **Web Dashboard**: http://localhost:3000
-- **Distribution List**: http://localhost:3000
-- **Analytics Charts**: http://localhost:3000/charts
-- **Distribution Details**: http://localhost:3000/distributions/[id] (e.g., http://localhost:3000/distributions/dst--001)
-- **Mock API**: http://localhost:3001/distributions
-- **Mock API Details**: http://localhost:3001/distributionDetails/[id]
-- **Mobile App (Web)**: http://localhost:8081 (when running `pnpm dev:mobile`)
+### Web Interface
 
-### Environment Variables
+- Main Dashboard: http://localhost:3000
+- Analytics: http://localhost:3000/charts
+- Distribution Details: http://localhost:3000/distributions/[id]
 
-The project includes a `.env.example` file with the following variables:
+### API Endpoints
 
-- `NEXT_PUBLIC_API_URL` - API endpoint for web app (default: http://localhost:3001)
-- `EXPO_PUBLIC_API_URL` - API endpoint for mobile app (default: http://localhost:3001)
-- `NODE_ENV` - Environment mode (development/production)
-- `JEST_WORKERS` - Number of Jest workers for testing
+- Distribution List: http://localhost:3001/distributions
+- Distribution Details: http://localhost:3001/distributionDetails/[id]
 
-Copy `.env.example` to `.env` and modify as needed for your environment.
+### Mobile Interface
 
-## 🤔 Assumptions & Trade-offs
+- Web Version: http://localhost:8081 (when running mobile server)
 
-### Assumptions Made
+## Environment Configuration
 
-1. **Data Structure**: Assumed the API would return distributions with optional `beneficiaryList` for details
-2. **User Experience**: Assumed users prefer immediate feedback (loading states, error handling)
-3. **Performance**: Assumed 4 items per page is optimal for the table view
-4. **Mobile Experience**: Assumed pull-to-refresh is the standard pattern for mobile lists
-5. **Cross-Platform**: Assumed shared business logic is more valuable than platform-specific optimizations
+The application uses the following environment variables:
 
-### Trade-offs Considered
+| Variable              | Description                     | Default               |
+| --------------------- | ------------------------------- | --------------------- |
+| `NEXT_PUBLIC_API_URL` | Web application API endpoint    | http://localhost:3001 |
+| `EXPO_PUBLIC_API_URL` | Mobile application API endpoint | http://localhost:3001 |
+| `NODE_ENV`            | Application environment         | development           |
+| `JEST_WORKERS`        | Jest test workers               | 1                     |
 
-1. **Monorepo vs Separate Repos**
+Copy `.env.example` to `.env` and modify values as needed for your environment.
 
-   - **Chosen**: Monorepo for code sharing
-   - **Trade-off**: Slightly more complex setup, but better for maintenance
-
-2. **React Query vs Redux**
-
-   - **Chosen**: React Query for server state
-   - **Trade-off**: Less control over caching, but simpler implementation
-
-3. **JSON Server vs MSW**
-
-   - **Chosen**: JSON Server for simplicity
-   - **Trade-off**: Less realistic API simulation, but easier setup
-
-4. **Tailwind CSS vs Styled Components**
-
-   - **Chosen**: Tailwind for rapid development
-   - **Trade-off**: Larger bundle size, but faster development
-
-5. **Testing Strategy**
-
-   - **Chosen**: Jest + Testing Library for component testing
-   - **Trade-off**: Less E2E coverage, but faster feedback loop
-
-6. **Mobile Charts**
-   - **Chosen**: Not implemented (not required in challenge)
-   - **Trade-off**: Incomplete mobile experience, but meets requirements
-
-## 🏗️ Architectural Overview
-
-This project is built as a **monorepo** using pnpm workspaces, and follows a **modular feature-based architecture** with a clear separation of concerns using the Container/Presentation pattern and SOLID principles.
+## Architecture
 
 ### Monorepo Structure
+
+The project is organized as a monorepo using pnpm workspaces:
 
 ```
 packages/
 ├── web-next/           # Next.js web application
-├── mobile-react-native/ # React Native mobile app
-├── shared/             # Shared business logic, types, utilities
-└── mock-api/           # JSON Server for API mocking
+├── mobile-react-native/ # React Native mobile application
+├── shared/             # Shared business logic and utilities
+└── mock-api/           # JSON Server API simulation
 ```
 
-### Container/Presentation Pattern
+### Design Patterns
 
-- **Containers**: Handle business logic, state management, and data fetching
-- **Presentation Components**: Pure components focused only on rendering UI
-- **Custom Hooks**: Extract and encapsulate business logic
+#### Container/Presentation Pattern
 
-### SOLID Principles
+- **Containers**: Manage business logic, state, and data operations
+- **Presentation Components**: Handle UI rendering and user interactions
+- **Custom Hooks**: Encapsulate reusable business logic
 
-- **Single Responsibility**: Each component has one clear purpose
+#### SOLID Principles
+
+- **Single Responsibility**: Each component has a single, well-defined purpose
 - **Open/Closed**: Components are extensible without modification
-- **Liskov Substitution**: Components can be replaced with similar implementations
-- **Interface Segregation**: Components accept only necessary props
-- **Dependency Inversion**: High-level components depend on abstractions
-
-### Shared Package Architecture
-
-The `@aidonic/shared` package contains:
-
-- Type definitions (`Distribution`, `Beneficiary`)
-- API services (`DistributionApi`)
-- React Query hooks (`useDistributions`, `useDistributionDetails`)
-- Utility functions (`formatDate`, `formatNumber`)
-- Constants and configuration
+- **Liskov Substitution**: Components can be replaced with compatible implementations
+- **Interface Segregation**: Components accept only necessary dependencies
+- **Dependency Inversion**: High-level modules depend on abstractions
 
 ### State Management
 
-- **React Query (TanStack Query)** for server state management
-- Built-in caching and synchronization
-- Automatic background refetching
-- Error handling and retry logic
+The application uses React Query (TanStack Query) for server state management, providing:
+
+- Automatic caching and synchronization
+- Background data refetching
+- Error handling and retry mechanisms
+- Optimistic updates
 
 ### Testing Strategy
 
-- **Jest** for test framework
-- **React Testing Library** for web components
-- **React Native Testing Library** for mobile components
-- Unit tests for business logic and utilities
-- Component tests for UI behavior
+- **Framework**: Jest for test execution
+- **Web Testing**: React Testing Library for component behavior
+- **Mobile Testing**: React Native Testing Library for mobile components
+- **Coverage**: Unit tests for utilities and business logic
+- **Integration**: Component tests for UI interactions
 
 ### API Design
 
-- **RESTful API** with JSON Server
-- `GET /distributions` - List all distributions with filtering
-- `GET /distributions/:id` - Get single distribution with details
-- Simple and predictable endpoints for easy testing
+The mock API follows RESTful principles:
 
-## 📄 License
+- `GET /distributions` - Retrieve distribution list with optional filtering
+- `GET /distributionDetails/:id` - Retrieve detailed distribution information
+- JSON-based request/response format
+- Standard HTTP status codes and error handling
 
-This project is for evaluation purposes only.
+## Development Decisions
+
+### Technology Choices
+
+1. **Monorepo Architecture**
+
+   - Enables code sharing between platforms
+   - Simplifies dependency management
+   - Facilitates consistent development practices
+
+2. **React Query for State Management**
+
+   - Provides built-in caching and synchronization
+   - Reduces boilerplate code
+   - Offers excellent developer experience
+
+3. **JSON Server for API Simulation**
+
+   - Rapid development and testing
+   - Simple configuration and maintenance
+   - Realistic API behavior simulation
+
+4. **Tailwind CSS for Styling**
+   - Rapid UI development
+   - Consistent design system
+   - Excellent responsive design support
+
+### Performance Considerations
+
+- React Query caching reduces unnecessary API calls
+- Memoized computations prevent expensive re-renders
+- Prefetching strategies improve perceived performance
+- Optimized bundle sizes through code splitting
+
+### Accessibility
+
+- Semantic HTML structure
+- ARIA attributes for screen readers
+- Keyboard navigation support
+- Color contrast compliance
+
+## License
+
+This project is created for evaluation purposes only.
