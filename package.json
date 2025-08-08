@@ -7,7 +7,10 @@
     "dev:mobile": "pnpm --filter mobile-react-native start",
     "dev:api": "cd mock-api && pnpm dev",
     "dev:all": "concurrently \"pnpm dev:api\" \"pnpm dev:web\"",
-    "start": "pnpm dev:all"
+    "start": "pnpm dev:all",
+    "test": "pnpm --filter web-next test && pnpm --filter shared test && pnpm --filter mobile-react-native test",
+    "test:watch": "pnpm --filter web-next test:watch",
+    "test:coverage": "pnpm --filter web-next test:coverage && pnpm --filter shared test:coverage && pnpm --filter mobile-react-native test:coverage"
   },
   "devDependencies": {
     "concurrently": "^9.2.0"

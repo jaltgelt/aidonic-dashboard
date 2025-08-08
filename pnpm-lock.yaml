@@ -93,6 +93,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.84.1
         version: 5.84.2(react@19.0.0)
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.9
       clsx:
         specifier: ^2.1.1
         version: 2.1.1

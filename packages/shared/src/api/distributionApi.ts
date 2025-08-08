@@ -1,6 +1,8 @@
 import { Distribution } from '../types/distribution';
 
-const API_BASE_URL = 'http://localhost:3002'; // Development URL
+// Get API URL from environment variables or use default
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
 
 export class DistributionApi {
   private baseUrl: string;
@@ -18,7 +20,7 @@ export class DistributionApi {
   }
 
   async getDistributionById(id: string): Promise<Distribution> {
-    const response = await fetch(`${this.baseUrl}/distributions/${id}`);
+    const response = await fetch(`${this.baseUrl}/distributionDetails/${id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch distribution details');
     }

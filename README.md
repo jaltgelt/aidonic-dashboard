@@ -2,13 +2,63 @@
 
 This repository contains my solution for the **Aidonic Technical Challenge**. The goal is to build a cross-platform dashboard for managing and visualizing aid distributions, using modern frontend technologies and best architectural practices.
 
+## ⚡ Quick Start (For Evaluators)
+
+```bash
+# 1. Install dependencies
+pnpm install
+
+# 2. Set up environment
+cp .env.example .env
+
+# 3. Start the web application
+pnpm start
+
+# 4. Start the mobile application (in a new terminal)
+pnpm dev:mobile
+
+# 5. Open applications in browser
+open http://localhost:3000  # Web Dashboard
+open http://localhost:8081  # Mobile App (Web)
+```
+
+**Expected Result**:
+
+- **Web**: Dashboard with table of aid distributions, filtering, pagination, and analytics charts
+- **Mobile**: Distribution list with cards, details screen, and pull-to-refresh functionality
+
+## 🎯 Challenge Requirements Delivered
+
+This solution implements all required features from the Aidonic Coding Task:
+
+### ✅ Web (Next.js)
+
+- Distribution List Page with table view, filters, and pagination
+- Distribution Details Page with full information and beneficiary list
+- Charts Page with pie chart (distributions by status) and line chart (distributions over time)
+
+### ✅ Mobile (React Native)
+
+- Distribution List Screen with scrollable cards
+- Details Screen with full distribution information
+- Pull-to-refresh functionality
+- Back navigation
+
+### ✅ Cross-Platform Features
+
+- Container/Presentation pattern implementation
+- SOLID principles and CLEAN Code practices
+- Shared business logic and types
+- Mocked API integration (JSON Server)
+- Unit testing with Jest and React Testing Library
+
 ## 🚀 Setup and Run Instructions
 
 ### Prerequisites
 
 - **Node.js** (v18 or higher)
 - **pnpm** (v8 or higher)
-- **Expo CLI** (for mobile development)
+- **Expo CLI** (for mobile development) - Required for mobile app
 
 ### Installation
 
@@ -19,20 +69,52 @@ cd aidonic-dashboard
 
 # Install dependencies
 pnpm install
+
+# Copy environment variables (required for proper API configuration)
+cp .env.example .env
 ```
 
 ### Run All Services
 
 ```bash
-# Start mock API, web app, and mobile development server
+# Start mock API and web app
 pnpm start
 ```
 
 This will start:
 
-- **Mock API server** on port 3002
+- **Mock API server** on port 3001
 - **Web application** on port 3000
-- **Mobile development server** (Expo)
+
+### Run Mobile App
+
+```bash
+# Start mobile development server
+pnpm dev:mobile
+```
+
+This will start:
+
+- **Mobile development server** (Expo) on port 8081
+
+### Run Tests
+
+```bash
+# Run all tests
+pnpm test
+
+# Run tests in watch mode (web only)
+pnpm test:watch
+
+# Run tests with coverage
+pnpm test:coverage
+```
+
+**Test Coverage**:
+
+- **Web**: Component tests with React Testing Library
+- **Mobile**: Component tests with React Native Testing Library
+- **Shared**: Unit tests for utilities and business logic
 
 ### Run Services Separately
 
@@ -44,7 +126,7 @@ pnpm dev:api
 pnpm dev:web
 
 # Terminal 3 - Mobile App
-pnpm mobile:web
+pnpm dev:mobile
 ```
 
 ### Access the Application
@@ -52,7 +134,21 @@ pnpm mobile:web
 - **Web Dashboard**: http://localhost:3000
 - **Distribution List**: http://localhost:3000
 - **Analytics Charts**: http://localhost:3000/charts
-- **Mock API**: http://localhost:3002/distributions
+- **Distribution Details**: http://localhost:3000/distributions/[id] (e.g., http://localhost:3000/distributions/dst--001)
+- **Mock API**: http://localhost:3001/distributions
+- **Mock API Details**: http://localhost:3001/distributionDetails/[id]
+- **Mobile App (Web)**: http://localhost:8081 (when running `pnpm dev:mobile`)
+
+### Environment Variables
+
+The project includes a `.env.example` file with the following variables:
+
+- `NEXT_PUBLIC_API_URL` - API endpoint for web app (default: http://localhost:3001)
+- `EXPO_PUBLIC_API_URL` - API endpoint for mobile app (default: http://localhost:3001)
+- `NODE_ENV` - Environment mode (development/production)
+- `JEST_WORKERS` - Number of Jest workers for testing
+
+Copy `.env.example` to `.env` and modify as needed for your environment.
 
 ## 🤔 Assumptions & Trade-offs
 
