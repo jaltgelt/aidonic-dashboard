@@ -15,10 +15,13 @@ packages/*/node_modules/
 
 # Build outputs
 packages/*/.next/
-packages/*/dist/
 packages/*/build/
 packages/*/.expo/
 packages/*/.turbo/
+
+# Ignore dist directories except for shared package
+packages/*/dist/
+!packages/shared/dist/
 
 # Vercel
 .vercel/

@@ -42,12 +42,14 @@ This application provides a complete solution for viewing, filtering, and analyz
 git clone <repository-url>
 cd aidonic-dashboard
 
-# Install dependencies
+# Install dependencies (automatically builds shared package)
 pnpm install
 
 # Configure environment variables
 cp .env.example .env
 ```
+
+> **Note**: The `pnpm install` command automatically builds the shared package after installing dependencies. This ensures that all workspace packages can properly import from the shared utilities.
 
 ## Development
 
@@ -104,6 +106,18 @@ pnpm dev:web
 
 # Terminal 3 - Mobile Application
 pnpm dev:mobile
+```
+
+### Building Shared Package
+
+If you make changes to the shared package, you can rebuild it manually:
+
+```bash
+# Build shared package
+pnpm build
+
+# Or build with watch mode (for development)
+pnpm --filter @aidonic/shared dev
 ```
 
 ## Application Access

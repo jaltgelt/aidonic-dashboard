@@ -1,0 +1,4 @@
+# Treat compiled JavaScript files as binary
+packages/shared/dist/**/*.js binary
+packages/shared/dist/**/*.d.ts text
+packages/shared/dist/**/*.d.ts.map text 

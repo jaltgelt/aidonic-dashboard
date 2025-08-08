@@ -3,11 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "postinstall": "pnpm --filter @aidonic/shared build",
     "dev:web": "pnpm --filter web-next dev",
     "dev:mobile": "pnpm --filter mobile-react-native start",
     "dev:api": "cd mock-api && pnpm dev",
     "dev:all": "concurrently \"pnpm dev:api\" \"pnpm dev:web\"",
     "start": "pnpm dev:all",
+    "build": "pnpm --filter @aidonic/shared build",
     "test": "pnpm --filter web-next test && pnpm --filter shared test && pnpm --filter mobile-react-native test",
     "test:watch": "pnpm --filter web-next test:watch",
     "test:coverage": "pnpm --filter web-next test:coverage && pnpm --filter shared test:coverage && pnpm --filter mobile-react-native test:coverage"
