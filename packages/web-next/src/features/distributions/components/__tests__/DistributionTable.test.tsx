@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DistributionTable from '../DistributionTable';
 import { Distribution } from '@aidonic/shared/types';
 
@@ -25,8 +26,14 @@ const mockDistributions: Distribution[] = [
 ];
 
 describe('DistributionTable', () => {
+  const queryClient = new QueryClient();
+
+  const renderWithQueryClient = (component: React.ReactElement) => {
+    return render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>);
+  };
+
   it('renders table with distributions', () => {
-    render(<DistributionTable distributions={mockDistributions} />);
+    renderWithQueryClient(<DistributionTable distributions={mockDistributions} />);
 
     // Check if table headers are rendered
     expect(screen.getByText('Region')).toBeInTheDocument();
@@ -49,14 +56,14 @@ describe('DistributionTable', () => {
   });
 
   it('renders empty state when no distributions', () => {
-    render(<DistributionTable distributions={[]} />);
+    renderWithQueryClient(<DistributionTable distributions={[]} />);
 
     expect(screen.getByText('No distributions found')).toBeInTheDocument();
     expect(screen.getByText(/Try adjusting your filters/)).toBeInTheDocument();
   });
 
   it('renders View Details links with correct hrefs', () => {
-    render(<DistributionTable distributions={mockDistributions} />);
+    renderWithQueryClient(<DistributionTable distributions={mockDistributions} />);
 
     const viewDetailsLinks = screen.getAllByRole('link', { name: /view details/i });
     expect(viewDetailsLinks).toHaveLength(2);
@@ -66,7 +73,7 @@ describe('DistributionTable', () => {
   });
 
   it('formats dates correctly', () => {
-    render(<DistributionTable distributions={mockDistributions} />);
+    renderWithQueryClient(<DistributionTable distributions={mockDistributions} />);
 
     // The formatDate function should format dates as YYYY-MM-DD
     expect(screen.getByText('2025-01-14')).toBeInTheDocument();
@@ -74,7 +81,7 @@ describe('DistributionTable', () => {
   });
 
   it('formats numbers with commas', () => {
-    render(<DistributionTable distributions={mockDistributions} />);
+    renderWithQueryClient(<DistributionTable distributions={mockDistributions} />);
 
     // The formatNumber function should add commas
     expect(screen.getByText('800')).toBeInTheDocument();
