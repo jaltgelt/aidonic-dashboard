@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aidonic/shared": "workspace:*",
     "@tanstack/react-query": "^5.84.1",
     "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",
