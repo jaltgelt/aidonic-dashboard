@@ -1,24 +1,25 @@
 import React from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useDistributions } from '../hooks/useDistributions';
 import DistributionCard from '../components/DistributionCard';
 import { Distribution } from '../types/distribution';
-import { RootStackParamList } from '../navigation/types';
-import { StackNavigationProp } from '@react-navigation/stack';
 
-type DistributionListNavigationProp = StackNavigationProp<RootStackParamList, 'DistributionList'>;
+interface DistributionListPageProps {
+  distributions?: Distribution[];
+  isLoading: boolean;
+  error: Error | null;
+  onRefresh: () => void;
+  onDistributionPress: (distribution: Distribution) => void;
+}
 
-const DistributionListScreen: React.FC = () => {
-  const navigation = useNavigation<DistributionListNavigationProp>();
-  const { data: distributions, isLoading, error, refetch } = useDistributions();
-
-  const handleDistributionPress = (distribution: Distribution) => {
-    navigation.navigate('DistributionDetails', { id: distribution.id });
-  };
-
+const DistributionListPage: React.FC<DistributionListPageProps> = ({
+  distributions,
+  isLoading,
+  error,
+  onRefresh,
+  onDistributionPress,
+}) => {
   const renderDistributionCard = ({ item }: { item: Distribution }) => (
-    <DistributionCard distribution={item} onPress={handleDistributionPress} />
+    <DistributionCard distribution={item} onPress={onDistributionPress} />
   );
 
   if (isLoading && !distributions) {
@@ -46,7 +47,7 @@ const DistributionListScreen: React.FC = () => {
         renderItem={renderDistributionCard}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContainer}
-        refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetch} />}
+        refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         ListEmptyComponent={
           <View style={styles.emptyContainer}>
             <Text style={styles.emptyText}>No distributions found</Text>
@@ -60,7 +61,7 @@ const DistributionListScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafafa', // Background from web palette
+    backgroundColor: '#fafafa',
   },
   title: {
     fontSize: 24,
@@ -87,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DistributionListScreen;
+export default DistributionListPage;

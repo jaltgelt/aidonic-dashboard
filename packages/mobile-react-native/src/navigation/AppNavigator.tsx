@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParamList } from './types';
-import DistributionListScreen from '../screens/DistributionListScreen';
-import DistributionDetailsScreen from '../screens/DistributionDetailsScreen';
-import AnalyticsScreen from '../screens/AnalyticsScreen';
+import DistributionListContainer from '../features/distributions/containers/DistributionListContainer';
+import DistributionDetailsContainer from '../features/distributions/containers/DistributionDetailsContainer';
+import AnalyticsScreen from '../features/analytics/pages/AnalyticsScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -23,12 +23,12 @@ const AppNavigator: React.FC = () => {
     >
       <Stack.Screen
         name="DistributionList"
-        component={DistributionListScreen}
+        component={DistributionListContainer}
         options={{ title: 'Aid Distributions' }}
       />
       <Stack.Screen
         name="DistributionDetails"
-        component={DistributionDetailsScreen}
+        component={DistributionDetailsContainer}
         options={{ title: 'Distribution Details' }}
       />
       <Stack.Screen name="Analytics" component={AnalyticsScreen} options={{ title: 'Analytics' }} />

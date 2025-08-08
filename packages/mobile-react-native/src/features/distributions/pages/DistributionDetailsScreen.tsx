@@ -7,19 +7,21 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
-import { useRoute } from '@react-navigation/native';
-import { useDistributionDetails } from '../hooks/useDistributionDetails';
-import { RootStackParamList } from '../navigation/types';
-import { RouteProp } from '@react-navigation/native';
+import { Distribution } from '../types/distribution';
 
-type DistributionDetailsRouteProp = RouteProp<RootStackParamList, 'DistributionDetails'>;
+interface DistributionDetailsPageProps {
+  distribution?: Distribution;
+  isLoading: boolean;
+  error: Error | null;
+  onRefresh: () => void;
+}
 
-const DistributionDetailsScreen: React.FC = () => {
-  const route = useRoute<DistributionDetailsRouteProp>();
-  const { id } = route.params;
-
-  const { data: distribution, isLoading, error, refetch } = useDistributionDetails(id);
-
+const DistributionDetailsPage: React.FC<DistributionDetailsPageProps> = ({
+  distribution,
+  isLoading,
+  error,
+  onRefresh,
+}) => {
   if (isLoading) {
     return (
       <View style={styles.container}>
@@ -41,7 +43,7 @@ const DistributionDetailsScreen: React.FC = () => {
   return (
     <ScrollView
       style={styles.container}
-      refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetch} />}
+      refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
     >
       <View style={styles.content}>
         {/* Header Section */}
@@ -179,4 +181,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DistributionDetailsScreen;
+export default DistributionDetailsPage;

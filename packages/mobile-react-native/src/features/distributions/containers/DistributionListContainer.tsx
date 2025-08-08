@@ -1,32 +1,30 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useDistributions } from '../hooks/useDistributions';
+import DistributionListPage from '../pages/DistributionListScreen';
+import { Distribution } from '../types/distribution';
+import { RootStackParamList } from '../../../navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type DistributionListNavigationProp = StackNavigationProp<RootStackParamList, 'DistributionList'>;
 
 const DistributionListContainer: React.FC = () => {
+  const navigation = useNavigation<DistributionListNavigationProp>();
+  const { data: distributions, isLoading, error, refetch } = useDistributions();
+
+  const handleDistributionPress = (distribution: Distribution) => {
+    navigation.navigate('DistributionDetails', { id: distribution.id });
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Distribution List Container</Text>
-      <Text style={styles.subtext}>Coming soon...</Text>
-    </View>
+    <DistributionListPage
+      distributions={distributions}
+      isLoading={isLoading}
+      error={error}
+      onRefresh={refetch}
+      onDistributionPress={handleDistributionPress}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f8fafc',
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#1e293b',
-    marginBottom: 8,
-  },
-  subtext: {
-    fontSize: 16,
-    color: '#64748b',
-  },
-});
 
 export default DistributionListContainer;

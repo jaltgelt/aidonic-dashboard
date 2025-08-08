@@ -1,32 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { useDistributionDetails } from '../hooks/useDistributionDetails';
+import DistributionDetailsPage from '../pages/DistributionDetailsScreen';
+import { RootStackParamList } from '../../../navigation/types';
+import { RouteProp } from '@react-navigation/native';
+
+type DistributionDetailsRouteProp = RouteProp<RootStackParamList, 'DistributionDetails'>;
 
 const DistributionDetailsContainer: React.FC = () => {
+  const route = useRoute<DistributionDetailsRouteProp>();
+  const { id } = route.params;
+
+  const { data: distribution, isLoading, error, refetch } = useDistributionDetails(id);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Distribution Details Container</Text>
-      <Text style={styles.subtext}>Coming soon...</Text>
-    </View>
+    <DistributionDetailsPage
+      distribution={distribution}
+      isLoading={isLoading}
+      error={error}
+      onRefresh={refetch}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f8fafc',
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#1e293b',
-    marginBottom: 8,
-  },
-  subtext: {
-    fontSize: 16,
-    color: '#64748b',
-  },
-});
 
 export default DistributionDetailsContainer;
