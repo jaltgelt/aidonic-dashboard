@@ -5,11 +5,17 @@ import { Distribution } from '@aidonic/shared/types';
 interface DistributionCardProps {
   distribution: Distribution;
   onPress: (distribution: Distribution) => void;
+  testID?: string;
 }
 
-const DistributionCard: React.FC<DistributionCardProps> = ({ distribution, onPress }) => {
+const DistributionCard: React.FC<DistributionCardProps> = ({ distribution, onPress, testID }) => {
   return (
-    <TouchableOpacity style={styles.card} onPress={() => onPress(distribution)} activeOpacity={0.7}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => onPress(distribution)}
+      activeOpacity={0.7}
+      testID={testID}
+    >
       <View style={styles.header}>
         <Text style={styles.region}>{distribution.region}</Text>
         <Text style={styles.statusText}>{distribution.status}</Text>
