@@ -2,16 +2,6 @@
 
 A cross-platform dashboard application for managing and visualizing aid distributions, built with Next.js and React Native. This solution demonstrates modern frontend architecture, clean code practices, and comprehensive testing strategies.
 
-## Evaluation Setup
-
-**Recommended Development Environment for Review:**
-
-1. **Terminal 1**: `pnpm dev:api` - Mock API server
-2. **Terminal 2**: `pnpm dev:mobile` - Mobile application
-3. **Terminal 3**: `pnpm dev:web` - Web application (optional)
-
-This configuration demonstrates architectural separation and facilitates comprehensive testing. Refer to the [Development](#development) section for detailed implementation instructions.
-
 ## Overview
 
 This application provides a complete solution for viewing, filtering, and analyzing aid distribution data across web and mobile platforms. The implementation follows industry best practices including the Container/Presentation pattern, SOLID principles, and comprehensive test coverage.
@@ -63,27 +53,20 @@ cp .env.example .env
 
 ## Development
 
-### Development Environment Configuration
+### Quick Start
 
-For optimal evaluation and development experience, we recommend running services individually to demonstrate architectural separation:
+For optimal evaluation and development experience, run services individually to demonstrate architectural separation:
 
-#### Terminal 1 - Mock API Server
 ```bash
+# Terminal 1 - Mock API server (Required for both web and mobile)
 pnpm dev:api
-```
-Initializes JSON server on port 3001 with mock distribution data.
 
-#### Terminal 2 - Mobile Application
-```bash
+# Terminal 2 - Mobile application
 pnpm dev:mobile
-```
-Initializes Expo development server on port 8081.
 
-#### Terminal 3 - Web Application (Optional)
-```bash
+# Terminal 3 - Web application (Optional)
 pnpm dev:web
 ```
-Initializes Next.js web application on port 3000.
 
 ### Alternative: Start All Services Together
 
@@ -98,7 +81,7 @@ This command starts:
 
 **Note**: For mobile development, you'll still need to run `pnpm dev:mobile` separately.
 
-### Run Tests
+### Testing
 
 ```bash
 # Execute all test suites
@@ -112,31 +95,9 @@ pnpm test:coverage
 ```
 
 Test coverage includes:
-
 - Web components with React Testing Library
 - Mobile components with React Native Testing Library
 - Shared utilities and business logic
-
-### Individual Service Management
-
-For development and evaluation, you can run each service in separate terminals:
-
-```bash
-# Terminal 1 - Mock API (Required for both web and mobile)
-pnpm dev:api
-
-# Terminal 2 - Web Application
-pnpm dev:web
-
-# Terminal 3 - Mobile Application
-pnpm dev:mobile
-```
-
-**Development Notes:**
-- The mock API server must remain active in Terminal 1 to support both web and mobile applications
-- API endpoints can be tested directly at `http://localhost:3001/distributions`
-- Mobile application can be accessed via web browser through the Expo interface or on physical devices
-- Each terminal provides dedicated logging for service-specific debugging
 
 ### Building Shared Package
 
@@ -235,6 +196,107 @@ The mock API follows RESTful principles:
 - `GET /distributionDetails/:id` - Retrieve detailed distribution information
 - JSON-based request/response format
 - Standard HTTP status codes and error handling
+
+## Assumptions and Trade-offs
+
+### Critical Assumptions
+
+1. **Data Consistency**
+   - **Assumption**: Mock API provides consistent, reliable data
+   - **Reality**: No data validation, error handling, or real-world edge cases
+   - **Impact**: Production deployment would require robust API with proper error handling
+
+2. **User Authentication**
+   - **Assumption**: No authentication required for demonstration
+   - **Reality**: Real aid distribution systems require role-based access control
+   - **Impact**: Missing security layer critical for production use
+
+3. **Data Volume**
+   - **Assumption**: Small dataset suitable for client-side processing
+   - **Reality**: Real aid distributions may involve thousands of records
+   - **Impact**: Performance degradation with large datasets
+
+4. **Network Conditions**
+   - **Assumption**: Stable internet connectivity
+   - **Reality**: Aid distribution often occurs in areas with poor connectivity
+   - **Impact**: No offline functionality or data synchronization
+
+### Architectural Trade-offs
+
+1. **Monorepo vs. Separate Repositories**
+   - **Trade-off**: Code sharing vs. deployment complexity
+   - **Pros**: Shared business logic, consistent tooling, simplified dependency management
+   - **Cons**: Increased build complexity, potential for tight coupling, larger repository size
+   - **Mitigation**: Clear package boundaries, independent deployment pipelines
+
+2. **React Query vs. Redux/Zustand**
+   - **Trade-off**: Server state management vs. client state complexity
+   - **Pros**: Automatic caching, background updates, reduced boilerplate
+   - **Cons**: Learning curve, potential over-fetching, limited offline support
+   - **Alternative**: Redux Toolkit for complex client state, Zustand for simple state
+
+3. **JSON Server vs. Real API**
+   - **Trade-off**: Development speed vs. production readiness
+   - **Pros**: Rapid prototyping, simple setup, realistic API behavior
+   - **Cons**: No authentication, limited query capabilities, no real persistence
+   - **Production**: Requires migration to Node.js/Express, PostgreSQL, or cloud services
+
+4. **Shared Package Architecture**
+   - **Trade-off**: Code reuse vs. coupling risk
+   - **Pros**: DRY principle, consistent business logic, type safety
+   - **Cons**: Platform-specific limitations, build complexity, version management
+   - **Risk**: Changes to shared code affect all platforms simultaneously
+
+### Performance Considerations
+
+1. **Bundle Size**
+   - **Issue**: Shared package increases bundle size for both platforms
+   - **Impact**: Slower initial load times, especially on mobile
+   - **Mitigation**: Tree shaking, code splitting, platform-specific builds
+
+2. **Memory Usage**
+   - **Issue**: React Query cache can grow indefinitely
+   - **Impact**: Memory leaks in long-running applications
+   - **Mitigation**: Cache time limits, garbage collection, memory monitoring
+
+3. **Network Efficiency**
+   - **Issue**: No request deduplication or intelligent caching
+   - **Impact**: Unnecessary API calls, poor offline experience
+   - **Mitigation**: Request batching, offline-first architecture, background sync
+
+### Scalability Limitations
+
+1. **Database Design**
+   - **Current**: Simple JSON file with basic relationships
+   - **Limitation**: No indexing, complex queries, or data integrity
+   - **Production**: Requires proper database schema, indexing, and query optimization
+
+2. **API Scalability**
+   - **Current**: Single-threaded JSON server
+   - **Limitation**: No load balancing, caching, or rate limiting
+   - **Production**: Requires microservices architecture, CDN, and API gateway
+
+3. **Mobile Performance**
+   - **Current**: Basic React Native implementation
+   - **Limitation**: No native optimizations, large bundle size
+   - **Production**: Requires native modules, performance monitoring, and optimization
+
+### Security Considerations
+
+1. **Data Protection**
+   - **Missing**: Encryption at rest and in transit
+   - **Risk**: Sensitive aid distribution data exposure
+   - **Requirement**: HTTPS, data encryption, secure storage
+
+2. **Input Validation**
+   - **Missing**: Client-side and server-side validation
+   - **Risk**: Data corruption, injection attacks
+   - **Requirement**: Comprehensive validation, sanitization, and error handling
+
+3. **Access Control**
+   - **Missing**: Authentication and authorization
+   - **Risk**: Unauthorized access to sensitive data
+   - **Requirement**: JWT tokens, role-based access, session management
 
 ## Development Decisions
 
