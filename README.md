@@ -2,6 +2,16 @@
 
 A cross-platform dashboard application for managing and visualizing aid distributions, built with Next.js and React Native. This solution demonstrates modern frontend architecture, clean code practices, and comprehensive testing strategies.
 
+## Evaluation Setup
+
+**Recommended Development Environment for Review:**
+
+1. **Terminal 1**: `pnpm dev:api` - Mock API server
+2. **Terminal 2**: `pnpm dev:mobile` - Mobile application
+3. **Terminal 3**: `pnpm dev:web` - Web application (optional)
+
+This configuration demonstrates architectural separation and facilitates comprehensive testing. Refer to the [Development](#development) section for detailed implementation instructions.
+
 ## Overview
 
 This application provides a complete solution for viewing, filtering, and analyzing aid distribution data across web and mobile platforms. The implementation follows industry best practices including the Container/Presentation pattern, SOLID principles, and comprehensive test coverage.
@@ -53,28 +63,40 @@ cp .env.example .env
 
 ## Development
 
-### Start All Services
+### Development Environment Configuration
+
+For optimal evaluation and development experience, we recommend running services individually to demonstrate architectural separation:
+
+#### Terminal 1 - Mock API Server
+```bash
+pnpm dev:api
+```
+Initializes JSON server on port 3001 with mock distribution data.
+
+#### Terminal 2 - Mobile Application
+```bash
+pnpm dev:mobile
+```
+Initializes Expo development server on port 8081.
+
+#### Terminal 3 - Web Application (Optional)
+```bash
+pnpm dev:web
+```
+Initializes Next.js web application on port 3000.
+
+### Alternative: Start All Services Together
 
 ```bash
-# Start mock API and web application
+# Start mock API and web application together
 pnpm start
 ```
 
 This command starts:
-
 - Mock API server on port 3001
 - Web application on port 3000
 
-### Start Mobile Application
-
-```bash
-# Start mobile development server
-pnpm dev:mobile
-```
-
-This command starts:
-
-- Expo development server on port 8081
+**Note**: For mobile development, you'll still need to run `pnpm dev:mobile` separately.
 
 ### Run Tests
 
@@ -97,8 +119,10 @@ Test coverage includes:
 
 ### Individual Service Management
 
+For development and evaluation, you can run each service in separate terminals:
+
 ```bash
-# Terminal 1 - Mock API
+# Terminal 1 - Mock API (Required for both web and mobile)
 pnpm dev:api
 
 # Terminal 2 - Web Application
@@ -107,6 +131,12 @@ pnpm dev:web
 # Terminal 3 - Mobile Application
 pnpm dev:mobile
 ```
+
+**Development Notes:**
+- The mock API server must remain active in Terminal 1 to support both web and mobile applications
+- API endpoints can be tested directly at `http://localhost:3001/distributions`
+- Mobile application can be accessed via web browser through the Expo interface or on physical devices
+- Each terminal provides dedicated logging for service-specific debugging
 
 ### Building Shared Package
 
