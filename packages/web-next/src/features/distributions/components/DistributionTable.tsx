@@ -11,14 +11,26 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Distribution } from '@/shared/types/distribution';
-import { formatDate, formatNumber } from '@/shared/utils/dateUtils';
+import { Distribution } from '@aidonic/shared/types';
+import { formatDate, formatNumber } from '@aidonic/shared/utils';
+import { useQueryClient } from '@tanstack/react-query';
+import { distributionApi } from '@aidonic/shared/api';
 
 interface DistributionTableProps {
   distributions: Distribution[];
 }
 
 const DistributionTable: React.FC<DistributionTableProps> = ({ distributions }) => {
+  const queryClient = useQueryClient();
+
+  const handlePrefetch = (distributionId: string) => {
+    queryClient.prefetchQuery({
+      queryKey: ['distribution', distributionId],
+      queryFn: () => distributionApi.getDistributionById(distributionId),
+      staleTime: 5 * 60 * 1000,
+    });
+  };
+
   return (
     <Table className="min-w-[800px]">
       <TableHeader>
@@ -58,7 +70,10 @@ const DistributionTable: React.FC<DistributionTableProps> = ({ distributions }) 
                 {formatNumber(distribution.beneficiaries)}
               </TableCell>
               <TableCell className="py-4 px-6">
-                <Link href={`/distributions/${distribution.id}`}>
+                <Link
+                  href={`/distributions/${distribution.id}`}
+                  onMouseEnter={() => handlePrefetch(distribution.id)}
+                >
                   <Button
                     variant="outline"
                     size="sm"

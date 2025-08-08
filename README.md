@@ -2,107 +2,208 @@
 
 This repository contains my solution for the **Aidonic Technical Challenge**. The goal is to build a cross-platform dashboard for managing and visualizing aid distributions, using modern frontend technologies and best architectural practices.
 
-## 🏗️ Architecture Overview
+## ⚡ Quick Start (For Evaluators)
+
+```bash
+# 1. Install dependencies
+pnpm install
+
+# 2. Set up environment
+cp .env.example .env
+
+# 3. Start the web application
+pnpm start
+
+# 4. Start the mobile application (in a new terminal)
+pnpm dev:mobile
+
+# 5. Open applications in browser
+open http://localhost:3000  # Web Dashboard
+open http://localhost:8081  # Mobile App (Web)
+```
+
+**Expected Result**:
+
+- **Web**: Dashboard with table of aid distributions, filtering, pagination, and analytics charts
+- **Mobile**: Distribution list with cards, details screen, and pull-to-refresh functionality
+
+## 🎯 Challenge Requirements Delivered
+
+This solution implements all required features from the Aidonic Coding Task:
+
+### ✅ Web (Next.js)
+
+- Distribution List Page with table view, filters, and pagination
+- Distribution Details Page with full information and beneficiary list
+- Charts Page with pie chart (distributions by status) and line chart (distributions over time)
+
+### ✅ Mobile (React Native)
+
+- Distribution List Screen with scrollable cards
+- Details Screen with full distribution information
+- Pull-to-refresh functionality
+- Back navigation
+
+### ✅ Cross-Platform Features
+
+- Container/Presentation pattern implementation
+- SOLID principles and CLEAN Code practices
+- Shared business logic and types
+- Mocked API integration (JSON Server)
+- Unit testing with Jest and React Testing Library
+
+## 🚀 Setup and Run Instructions
+
+### Prerequisites
+
+- **Node.js** (v18 or higher)
+- **pnpm** (v8 or higher)
+- **Expo CLI** (for mobile development) - Required for mobile app
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd aidonic-dashboard
+
+# Install dependencies
+pnpm install
+
+# Copy environment variables (required for proper API configuration)
+cp .env.example .env
+```
+
+### Run All Services
+
+```bash
+# Start mock API and web app
+pnpm start
+```
+
+This will start:
+
+- **Mock API server** on port 3001
+- **Web application** on port 3000
+
+### Run Mobile App
+
+```bash
+# Start mobile development server
+pnpm dev:mobile
+```
+
+This will start:
+
+- **Mobile development server** (Expo) on port 8081
+
+### Run Tests
+
+```bash
+# Run all tests
+pnpm test
+
+# Run tests in watch mode (web only)
+pnpm test:watch
+
+# Run tests with coverage
+pnpm test:coverage
+```
+
+**Test Coverage**:
+
+- **Web**: Component tests with React Testing Library
+- **Mobile**: Component tests with React Native Testing Library
+- **Shared**: Unit tests for utilities and business logic
+
+### Run Services Separately
+
+```bash
+# Terminal 1 - Mock API
+pnpm dev:api
+
+# Terminal 2 - Web App
+pnpm dev:web
+
+# Terminal 3 - Mobile App
+pnpm dev:mobile
+```
+
+### Access the Application
+
+- **Web Dashboard**: http://localhost:3000
+- **Distribution List**: http://localhost:3000
+- **Analytics Charts**: http://localhost:3000/charts
+- **Distribution Details**: http://localhost:3000/distributions/[id] (e.g., http://localhost:3000/distributions/dst--001)
+- **Mock API**: http://localhost:3001/distributions
+- **Mock API Details**: http://localhost:3001/distributionDetails/[id]
+- **Mobile App (Web)**: http://localhost:8081 (when running `pnpm dev:mobile`)
+
+### Environment Variables
+
+The project includes a `.env.example` file with the following variables:
+
+- `NEXT_PUBLIC_API_URL` - API endpoint for web app (default: http://localhost:3001)
+- `EXPO_PUBLIC_API_URL` - API endpoint for mobile app (default: http://localhost:3001)
+- `NODE_ENV` - Environment mode (development/production)
+- `JEST_WORKERS` - Number of Jest workers for testing
+
+Copy `.env.example` to `.env` and modify as needed for your environment.
+
+## 🤔 Assumptions & Trade-offs
+
+### Assumptions Made
+
+1. **Data Structure**: Assumed the API would return distributions with optional `beneficiaryList` for details
+2. **User Experience**: Assumed users prefer immediate feedback (loading states, error handling)
+3. **Performance**: Assumed 4 items per page is optimal for the table view
+4. **Mobile Experience**: Assumed pull-to-refresh is the standard pattern for mobile lists
+5. **Cross-Platform**: Assumed shared business logic is more valuable than platform-specific optimizations
+
+### Trade-offs Considered
+
+1. **Monorepo vs Separate Repos**
+
+   - **Chosen**: Monorepo for code sharing
+   - **Trade-off**: Slightly more complex setup, but better for maintenance
+
+2. **React Query vs Redux**
+
+   - **Chosen**: React Query for server state
+   - **Trade-off**: Less control over caching, but simpler implementation
+
+3. **JSON Server vs MSW**
+
+   - **Chosen**: JSON Server for simplicity
+   - **Trade-off**: Less realistic API simulation, but easier setup
+
+4. **Tailwind CSS vs Styled Components**
+
+   - **Chosen**: Tailwind for rapid development
+   - **Trade-off**: Larger bundle size, but faster development
+
+5. **Testing Strategy**
+
+   - **Chosen**: Jest + Testing Library for component testing
+   - **Trade-off**: Less E2E coverage, but faster feedback loop
+
+6. **Mobile Charts**
+   - **Chosen**: Not implemented (not required in challenge)
+   - **Trade-off**: Incomplete mobile experience, but meets requirements
+
+## 🏗️ Architectural Overview
 
 This project is built as a **monorepo** using pnpm workspaces, and follows a **modular feature-based architecture** with a clear separation of concerns using the Container/Presentation pattern and SOLID principles.
 
-### 📁 Folder Structure (Web App)
+### Monorepo Structure
 
 ```
-packages/web-next/
-├── public/                      → Static assets
-├── src/
-│   ├── app/                    → App Router layout, routing, metadata
-│   │   ├── page.tsx            → Main dashboard page
-│   │   ├── distributions/      → Distribution routes
-│   │   │   └── [id]/
-│   │   │       └── page.tsx    → Individual distribution details
-│   │   ├── charts/             → Analytics routes
-│   │   │   └── page.tsx        → Charts dashboard
-│   │   ├── layout.tsx          → Root layout
-│   │   └── globals.css         → Global styles
-│   ├── features/               → Domain features
-│   │   ├── distributions/      → Distribution feature
-│   │   │   ├── components/     → Presentational UI components
-│   │   │   │   ├── DistributionTable.tsx
-│   │   │   │   ├── DistributionFilters.tsx
-│   │   │   │   ├── DistributionPagination.tsx
-│   │   │   │   └── DistributionDetails.tsx
-│   │   │   ├── containers/     → Container components with business logic
-│   │   │   │   ├── DistributionList.container.tsx
-│   │   │   │   └── DistributionDetails.container.tsx
-│   │   │   ├── hooks/          → Custom hooks for fetching and state
-│   │   │   │   ├── useDistributions.ts
-│   │   │   │   └── useDistributionDetails.ts
-│   │   │   ├── pages/          → Page components
-│   │   │   │   ├── DistributionListPage.tsx
-│   │   │   │   └── DistributionDetailsPage.tsx
-│   │   │   └── constants/      → Feature constants
-│   │   └── analytics/          → Analytics feature
-│   │       ├── components/     → Chart components
-│   │       │   ├── AidTypePieChart.tsx
-│   │       │   ├── BeneficiariesLineChart.tsx
-│   │       │   └── ChartsContainer.tsx
-│   │       ├── containers/     → Analytics containers
-│   │       │   └── Analytics.container.tsx
-│   │       ├── hooks/          → Analytics hooks
-│   │       │   └── useAnalytics.ts
-│   │       ├── pages/          → Analytics pages
-│   │       │   └── AnalyticsPage.tsx
-│   │       ├── utils/          → Data transformers
-│   │       │   └── chartDataTransformers.ts
-│   │       └── constants/      → Chart constants
-│   ├── shared/                 → Reusable utilities and components
-│   │   ├── components/         → Shared UI components
-│   │   │   └── Navigation.tsx
-│   │   ├── types/              → Shared type definitions
-│   │   │   └── distribution.ts
-│   │   ├── utils/              → Utility functions
-│   │   │   ├── cn.ts
-│   │   │   └── dateUtils.ts
-│   │   ├── config/             → Configuration
-│   │   │   └── api.ts
-│   │   └── lib/                → Library utilities
-│   │       └── fetcher.ts
-│   └── components/ui/          → Base UI components
-│       ├── button.tsx
-│       ├── select.tsx
-│       └── table.tsx
-├── .eslintrc.json
-├── tailwind.config.ts
-└── tsconfig.json
+packages/
+├── web-next/           # Next.js web application
+├── mobile-react-native/ # React Native mobile app
+├── shared/             # Shared business logic, types, utilities
+└── mock-api/           # JSON Server for API mocking
 ```
-
-## ✅ Challenge Requirements
-
-### Web (Next.js) - COMPLETED ✅
-
-- [x] **Distribution list** (table with filters, pagination)
-- [x] **Distribution detail page** (individual distribution view)
-- [x] **Charts page** (pie chart + line chart)
-- [x] **Container/Presentation structure** (perfectly implemented)
-- [x] **SOLID + Clean Code principles** (all principles followed)
-- [x] **API mocked** (json-server with proper endpoints)
-
-### Mobile (React Native) - PLANNED
-
-- [ ] Distribution list (cards)
-- [ ] Details screen (stacked)
-- [ ] Pull to refresh
-- [ ] Charts page (optional)
-
-## 🛠️ Tech Stack
-
-- **React 19** (Latest)
-- **Next.js 15** (App Router)
-- **TypeScript** (Strict mode)
-- **Tailwind CSS** (Custom design system)
-- **Recharts** (Data visualization)
-- **json-server** (Mock API)
-- **pnpm** (Monorepo management)
-- **ESLint** (Code quality)
-
-## 🏛️ Architecture Principles
 
 ### Container/Presentation Pattern
 
@@ -118,179 +219,37 @@ packages/web-next/
 - **Interface Segregation**: Components accept only necessary props
 - **Dependency Inversion**: High-level components depend on abstractions
 
-## 📊 Mock API (json-server)
+### Shared Package Architecture
 
-### Endpoints
+The `@aidonic/shared` package contains:
 
-- `GET /distributions` - List all distributions (without beneficiaryList)
-- `GET /distributionDetails/{id}` - Individual distribution with beneficiaryList
+- Type definitions (`Distribution`, `Beneficiary`)
+- API services (`DistributionApi`)
+- React Query hooks (`useDistributions`, `useDistributionDetails`)
+- Utility functions (`formatDate`, `formatNumber`)
+- Constants and configuration
 
-### API Structure
+### State Management
 
-**List Endpoint (`/distributions`):**
+- **React Query (TanStack Query)** for server state management
+- Built-in caching and synchronization
+- Automatic background refetching
+- Error handling and retry logic
 
-```json
-[
-  {
-    "id": "dst--001",
-    "region": "West Nile",
-    "date": "2025-01-15",
-    "status": "Completed",
-    "beneficiaries": 800,
-    "aidType": "Food",
-    "deliveryChannel": "Vouchers"
-  }
-]
-```
+### Testing Strategy
 
-**Individual Endpoint (`/distributionDetails/{id}`):**
+- **Jest** for test framework
+- **React Testing Library** for web components
+- **React Native Testing Library** for mobile components
+- Unit tests for business logic and utilities
+- Component tests for UI behavior
 
-```json
-{
-  "id": "dst--001",
-  "region": "West Nile",
-  "date": "2025-01-15",
-  "status": "Completed",
-  "beneficiaries": 800,
-  "aidType": "Food",
-  "deliveryChannel": "Vouchers",
-  "beneficiaryList": [
-    { "id": "bnf--001", "name": "Jane Doe" },
-    { "id": "bnf--002", "name": "John Smith" }
-  ]
-}
-```
+### API Design
 
-## 🎯 Current Features
-
-### 📋 Distribution List
-
-- ✅ **Real-time data** from mock API
-- ✅ **Advanced filtering** by region and status
-- ✅ **Client-side pagination** (4 items per page)
-- ✅ **Responsive design** (mobile-first approach)
-- ✅ **Empty states** handling
-- ✅ **Loading states** with user feedback
-- ✅ **Error handling** with graceful display
-- ✅ **Navigation** to individual distributions
-
-### 📄 Distribution Details
-
-- ✅ **Complete distribution information** display
-- ✅ **Responsive layout** (adaptive grid system)
-- ✅ **Beneficiary list** with proper formatting
-- ✅ **Back navigation** to distribution list
-- ✅ **Loading and error states**
-- ✅ **Professional UI** with proper spacing
-
-### 📈 Analytics Dashboard
-
-- ✅ **Aid Type Pie Chart** - Distribution by aid type
-- ✅ **Beneficiaries Over Time** - Line chart showing trends
-- ✅ **Real data integration** from distributions
-- ✅ **Interactive tooltips** with formatted data
-- ✅ **Professional styling** with custom colors
-- ✅ **Responsive design** for all screen sizes
-- ✅ **Data aggregation** by month for time series
-
-### 🎨 UI/UX Features
-
-- ✅ **Modern design** with Tailwind CSS
-- ✅ **Accessibility** (keyboard navigation, ARIA labels)
-- ✅ **Interactive elements** (hover states, focus management)
-- ✅ **Consistent styling** (unified design system)
-- ✅ **Professional appearance** suitable for production
-
-## 🚀 Quick Start
-
-### Run Both Services (Recommended)
-
-```bash
-pnpm start
-```
-
-This will start:
-
-- **Mock API server** on port 3002
-- **Web application** on port 3000
-
-### Run Services Separately
-
-```bash
-# Terminal 1 - Mock API
-pnpm dev:api
-
-# Terminal 2 - Web App
-pnpm dev:web
-```
-
-## 📱 Access the Application
-
-- **Web Dashboard**: http://localhost:3000
-- **Distribution List**: http://localhost:3000
-- **Analytics Charts**: http://localhost:3000/charts
-- **Mock API**: http://localhost:3002/distributions
-
-## 🧪 Testing & Quality
-
-### Code Quality
-
-- ✅ **TypeScript** (strict mode, no `any` types)
-- ✅ **ESLint** (no warnings, clean code)
-- ✅ **Prettier** (consistent formatting)
-- ✅ **Type checking** (no type errors)
-
-### Architecture Quality
-
-- ✅ **Container/Presentation pattern** (perfect separation)
-- ✅ **SOLID principles** (all 5 principles implemented)
-- ✅ **Clean Code** (readable, maintainable, modular)
-- ✅ **Feature-based organization** (scalable structure)
-
-## 🔮 Future Enhancements
-
-### Planned Features
-
-- [ ] **Mobile app** (React Native)
-- [ ] **Real API integration**
-- [ ] **Authentication system**
-- [ ] **Advanced filtering** (date ranges, multiple selections)
-- [ ] **Export functionality** (PDF, CSV)
-- [ ] **Real-time updates** (WebSocket integration)
-
-### Technical Improvements
-
-- [ ] **Unit test coverage** (Jest + RTL)
-- [ ] **E2E testing** (Playwright)
-- [ ] **Performance monitoring**
-- [ ] **Internationalization** (i18n)
-- [ ] **PWA features** (offline support)
-
-## 🤝 Contributing
-
-### Code Standards
-
-- Follow TypeScript strict mode
-- Use functional components with hooks
-- Implement proper error boundaries
-- Write meaningful component documentation
-- Follow Container/Presentation pattern
-- Apply SOLID principles
-
-### Git Workflow
-
-1. Create feature branch
-2. Implement changes
-3. Add tests
-4. Update documentation
-5. Submit pull request
-
-## 👨‍💻 Author
-
-**Juan Altgelt**  
-Frontend Developer  
-Buenos Aires, Argentina  
-Built with care for the Aidonic technical interview.
+- **RESTful API** with JSON Server
+- `GET /distributions` - List all distributions with filtering
+- `GET /distributions/:id` - Get single distribution with details
+- Simple and predictable endpoints for easy testing
 
 ## 📄 License
 

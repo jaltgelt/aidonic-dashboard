@@ -3,7 +3,7 @@
 import React from 'react';
 import { RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { DISTRIBUTION_CONSTANTS } from '../constants';
+import { DISTRIBUTION_CONSTANTS } from '@aidonic/shared/constants';
 import {
   Select,
   SelectContent,
