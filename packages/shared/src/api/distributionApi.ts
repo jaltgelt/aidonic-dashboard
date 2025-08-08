@@ -1,7 +1,6 @@
 import { Distribution } from '../types/distribution';
 
-const API_BASE_URL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:3002' : 'https://api.aidonic.com'; // Production URL
+const API_BASE_URL = 'http://localhost:3002'; // Development URL
 
 export class DistributionApi {
   private baseUrl: string;

@@ -75,13 +75,16 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.84.1
         version: 5.84.2(react@19.0.0)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       react:
         specifier: 19.0.0
         version: 19.0.0
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
     devDependencies:
-      '@types/node':
-        specifier: ^20.0.0
-        version: 20.19.9
       '@types/react':
         specifier: ^19.0.0
         version: 19.0.14

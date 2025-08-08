@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { cn } from '@/shared/utils/cn';
+import { cn } from '@aidonic/shared/utils';
 
 interface SelectProps {
   value: string;

@@ -1,4 +1,4 @@
-import { Distribution } from '@/shared/types/distribution';
+import { Distribution } from '@aidonic/shared/types';
 import { AidTypeDataPoint, TimeSeriesDataPoint } from '../hooks/useAnalytics';
 import { AID_TYPE_COLORS } from '../constants';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { cn } from '@/shared/utils/cn';
+import { cn } from '@aidonic/shared/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'outline' | 'ghost';

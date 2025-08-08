@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Distribution } from '@/shared/types/distribution';
-import { fetchDistributions } from '@/shared/lib/fetcher';
+import { Distribution } from '@aidonic/shared/types';
+import { distributionApi } from '@aidonic/shared/api';
 import { transformAidTypeData, transformTimeSeriesData } from '../utils/chartDataTransformers';
 
 export interface AidTypeDataPoint {
@@ -24,7 +24,7 @@ export const useAnalytics = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchDistributions();
+        const data = await distributionApi.getDistributions();
         setDistributions(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load analytics data');

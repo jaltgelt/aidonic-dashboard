@@ -2,7 +2,7 @@ export const DISTRIBUTION_CONSTANTS = {
   // Default values
   DEFAULT_REGION: 'All Regions',
   DEFAULT_STATUS: 'All Statuses',
-  ITEMS_PER_PAGE: 10,
+  ITEMS_PER_PAGE: 4,
 
   // Status options
   STATUS_OPTIONS: {
