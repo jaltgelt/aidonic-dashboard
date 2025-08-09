@@ -1,18 +1,4 @@
 import { DISTRIBUTION_CONSTANTS } from '../constants/distribution';
-export const getStatusColor = (status) => {
-    switch (status.toLowerCase()) {
-        case 'completed':
-            return '#10b981'; // Green
-        case 'in progress':
-            return '#3b82f6'; // Blue
-        case 'pending':
-            return '#f59e0b'; // Yellow
-        case 'cancelled':
-            return '#ef4444'; // Red
-        default:
-            return '#64748b'; // Gray
-    }
-};
 export const filterDistributions = (distributions, filters) => {
     return distributions.filter((distribution) => {
         const regionMatch = !filters.region ||

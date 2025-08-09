@@ -58,14 +58,14 @@ cp .env.example .env
 For optimal evaluation and development experience, run services individually to demonstrate architectural separation:
 
 ```bash
-# Terminal 1 - Mock API server (Required for both web and mobile)
+# Terminal 1 - Mock API server
 pnpm dev:api
 
-# Terminal 2 - Mobile application
-pnpm dev:mobile
-
-# Terminal 3 - Web application (Optional)
+# Terminal 2 - Web application
 pnpm dev:web
+
+# Terminal 3 - Mobile application
+pnpm dev:mobile
 ```
 
 ### Alternative: Start All Services Together

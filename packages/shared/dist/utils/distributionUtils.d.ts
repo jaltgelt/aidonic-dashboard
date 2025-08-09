@@ -1,5 +1,4 @@
 import { Distribution } from '../types/distribution';
-export declare const getStatusColor: (status: string) => string;
 export declare const filterDistributions: (distributions: Distribution[], filters: {
     region?: string;
     status?: string;
