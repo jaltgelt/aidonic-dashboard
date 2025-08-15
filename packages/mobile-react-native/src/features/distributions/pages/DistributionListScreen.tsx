@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, FlatList, RefreshControl, TouchableOpacity } from 'react-native';
 import DistributionCard from '../components/DistributionCard';
 import { Distribution } from '@aidonic/shared/types';
 
@@ -53,6 +53,7 @@ const DistributionListPage: React.FC<DistributionListPageProps> = ({
             <Text style={styles.emptyText}>No distributions found</Text>
           </View>
         }
+        showsVerticalScrollIndicator={true}
       />
     </View>
   );

@@ -1,6 +1,6 @@
 import { Distribution } from '@aidonic/shared/types';
 import { AidTypeDataPoint, TimeSeriesDataPoint } from '../hooks/useAnalytics';
-import { AID_TYPE_COLORS } from '../constants';
+import { AID_TYPE_COLORS } from '@aidonic/shared/constants';
 
 export const transformAidTypeData = (distributions: Distribution[]): AidTypeDataPoint[] => {
   const aidTypeCounts = distributions.reduce((acc, distribution) => {

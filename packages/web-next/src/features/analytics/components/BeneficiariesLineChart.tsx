@@ -12,6 +12,7 @@ import {
 } from 'recharts';
 import { TimeSeriesDataPoint } from '../hooks/useAnalytics';
 import { CHART_CONSTANTS } from '../constants';
+import { CHART_COLORS } from '@aidonic/shared/constants';
 
 interface BeneficiariesLineChartProps {
   data: TimeSeriesDataPoint[];
@@ -68,16 +69,16 @@ const BeneficiariesLineChart: React.FC<BeneficiariesLineChartProps> = ({ data })
         <Line
           type="monotone"
           dataKey="beneficiaries"
-          stroke="hsl(var(--chart-medium-blue))"
+          stroke={CHART_COLORS.primary}
           strokeWidth={CHART_CONSTANTS.LINE_CHART.STROKE_WIDTH}
           dot={{
-            fill: 'hsl(var(--chart-medium-blue))',
+            fill: CHART_COLORS.primary,
             strokeWidth: 2,
             r: CHART_CONSTANTS.LINE_CHART.DOT_RADIUS,
           }}
           activeDot={{
             r: CHART_CONSTANTS.LINE_CHART.ACTIVE_DOT_RADIUS,
-            stroke: 'hsl(var(--chart-medium-blue))',
+            stroke: CHART_COLORS.primary,
             strokeWidth: 2,
           }}
         />
