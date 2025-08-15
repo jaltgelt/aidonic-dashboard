@@ -2,8 +2,9 @@
   "name": "@aidonic/shared",
   "version": "1.0.0",
   "description": "Shared types, constants, utilities, and business logic for Aidonic Dashboard",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
