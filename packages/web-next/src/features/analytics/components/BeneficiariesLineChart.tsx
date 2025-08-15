@@ -10,7 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { TimeSeriesDataPoint } from '../hooks/useAnalytics';
+import { TimeSeriesDataPoint } from '@aidonic/shared/hooks';
 import { CHART_CONSTANTS } from '../constants';
 import { CHART_COLORS } from '@aidonic/shared/constants';
 

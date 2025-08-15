@@ -3,7 +3,7 @@
 import React from 'react';
 import AidTypePieChart from './AidTypePieChart';
 import BeneficiariesLineChart from './BeneficiariesLineChart';
-import { AidTypeDataPoint, TimeSeriesDataPoint } from '../hooks/useAnalytics';
+import { AidTypeDataPoint, TimeSeriesDataPoint } from '@aidonic/shared/hooks';
 import { CHART_TITLES } from '@aidonic/shared/constants';
 
 interface ChartsContainerProps {

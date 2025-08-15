@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { AidTypeDataPoint } from '../hooks/useAnalytics';
+import { AidTypeDataPoint } from '@aidonic/shared/hooks';
 import { CHART_CONSTANTS } from '../constants';
 
 interface AidTypePieChartProps {

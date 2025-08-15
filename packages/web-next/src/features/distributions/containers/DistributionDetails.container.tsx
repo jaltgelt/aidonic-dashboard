@@ -2,7 +2,7 @@
 
 import React from 'react';
 import DistributionDetails from '../components/DistributionDetails';
-import { useDistributionDetails } from '../hooks/useDistributionDetails';
+import { useDistributionDetails } from '@aidonic/shared/hooks';
 
 interface DistributionDetailsContainerProps {
   distributionId: string;
@@ -11,7 +11,7 @@ interface DistributionDetailsContainerProps {
 const DistributionDetailsContainer: React.FC<DistributionDetailsContainerProps> = ({
   distributionId,
 }) => {
-  const { distribution, loading, error } = useDistributionDetails(distributionId);
+  const { data: distribution, isLoading: loading, error } = useDistributionDetails(distributionId);
 
   if (loading) {
     return (
@@ -26,7 +26,7 @@ const DistributionDetailsContainer: React.FC<DistributionDetailsContainerProps> 
   if (error) {
     return (
       <div className="text-center py-8">
-        <div className="text-lg font-medium text-red-600">Error: {error}</div>
+        <div className="text-lg font-medium text-red-600">Error: {error.message}</div>
       </div>
     );
   }
