@@ -14,4 +14,16 @@ export declare const getDistributionStats: (distributions: Distribution[]) => {
     inProgressDistributions: number;
     completionRate: number;
 };
+export declare const groupCountByStatus: (distributions: Distribution[]) => {
+    x: string;
+    y: number;
+}[];
+export declare const groupCountByAidType: (distributions: Distribution[]) => {
+    x: string;
+    y: number;
+}[];
+export declare const countByDate: (distributions: Distribution[]) => {
+    x: string;
+    y: number;
+}[];
 //# sourceMappingURL=distributionUtils.d.ts.map

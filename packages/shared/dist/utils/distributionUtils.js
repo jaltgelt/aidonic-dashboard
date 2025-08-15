@@ -39,3 +39,42 @@ export const getDistributionStats = (distributions) => {
         completionRate: totalDistributions > 0 ? (completedDistributions / totalDistributions) * 100 : 0,
     };
 };
+export const groupCountByStatus = (distributions) => {
+    const statusCounts = distributions.reduce((acc, distribution) => {
+        acc[distribution.status] = (acc[distribution.status] || 0) + 1;
+        return acc;
+    }, {});
+    return Object.entries(statusCounts).map(([status, count]) => ({
+        x: status,
+        y: count,
+    }));
+};
+export const groupCountByAidType = (distributions) => {
+    const aidTypeCounts = distributions.reduce((acc, distribution) => {
+        acc[distribution.aidType] = (acc[distribution.aidType] || 0) + 1;
+        return acc;
+    }, {});
+    return Object.entries(aidTypeCounts).map(([aidType, count]) => ({
+        x: aidType,
+        y: count,
+    }));
+};
+export const countByDate = (distributions) => {
+    const dateCounts = distributions.reduce((acc, distribution) => {
+        const date = new Date(distribution.date).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+        });
+        acc[date] = (acc[date] || 0) + distribution.beneficiaries;
+        return acc;
+    }, {});
+    const sortedEntries = Object.entries(dateCounts)
+        .sort((a, b) => new Date(a[0]).getTime() - new Date(b[0]).getTime());
+    // Tomar solo algunos puntos para evitar superposición
+    const step = Math.max(1, Math.floor(sortedEntries.length / 6));
+    const filteredEntries = sortedEntries.filter((_, index) => index % step === 0);
+    return filteredEntries.map(([date, count]) => ({
+        x: date,
+        y: count,
+    }));
+};
