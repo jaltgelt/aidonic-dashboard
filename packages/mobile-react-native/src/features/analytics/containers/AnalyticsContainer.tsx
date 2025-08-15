@@ -1,18 +1,14 @@
 import React from 'react';
-import { useDistributions } from '@aidonic/shared/hooks';
-import { groupCountByAidType, countByDate } from '@aidonic/shared/utils';
+import { useAnalytics } from '@aidonic/shared/hooks';
 import AnalyticsScreen from '../pages/AnalyticsScreen';
 
 const AnalyticsContainer: React.FC = () => {
-  const { data: distributions, isLoading, error } = useDistributions();
-
-  const pieData = distributions ? groupCountByAidType(distributions) : [];
-  const lineData = distributions ? countByDate(distributions) : [];
+  const { pieData, lineData, loading, error } = useAnalytics();
 
   return (
     <AnalyticsScreen
-      loading={isLoading}
-      errorMsg={error?.message}
+      loading={loading}
+      errorMsg={error || undefined}
       pieData={pieData}
       lineData={lineData}
     />

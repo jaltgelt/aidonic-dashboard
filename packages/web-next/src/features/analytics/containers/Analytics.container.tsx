@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ChartsContainer from '../components/ChartsContainer';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { useAnalytics } from '@aidonic/shared/hooks';
 
 const AnalyticsContainer: React.FC = () => {
   const { aidTypeData, timeSeriesData, loading, error } = useAnalytics();
