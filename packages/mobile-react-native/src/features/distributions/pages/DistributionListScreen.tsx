@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, FlatList, RefreshControl, TouchableOpacity } from 'react-native';
+import { View, Text, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
 import DistributionCard from '../components/DistributionCard';
 import { Distribution } from '@aidonic/shared/types';
+import { distributionListStyles, baseStyles, colors } from '../../../shared/styles';
 
 interface DistributionListPageProps {
   distributions?: Distribution[];
@@ -24,33 +25,33 @@ const DistributionListPage: React.FC<DistributionListPageProps> = ({
 
   if (isLoading && !distributions) {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#1e293b" />
-        <Text style={styles.subtitle}>Loading distributions...</Text>
+      <View style={baseStyles.loadingContainer}>
+        <ActivityIndicator size="large" color={colors.primary} />
+        <Text style={baseStyles.loadingText}>Loading distributions...</Text>
       </View>
     );
   }
 
   if (error) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Error</Text>
-        <Text style={styles.subtitle}>Failed to load distributions</Text>
+      <View style={baseStyles.errorContainer}>
+        <Text style={baseStyles.title}>Error</Text>
+        <Text style={baseStyles.subtitle}>Failed to load distributions</Text>
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <View style={distributionListStyles.container}>
       <FlatList
         data={distributions}
         renderItem={renderDistributionCard}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.listContainer}
+        contentContainerStyle={distributionListStyles.listContainer}
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         ListEmptyComponent={
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyText}>No distributions found</Text>
+          <View style={distributionListStyles.emptyContainer}>
+            <Text style={distributionListStyles.emptyText}>No distributions found</Text>
           </View>
         }
         showsVerticalScrollIndicator={true}
@@ -58,35 +59,5 @@ const DistributionListPage: React.FC<DistributionListPageProps> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fafafa',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#1e293b',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#64748b',
-  },
-  listContainer: {
-    paddingVertical: 8,
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 40,
-  },
-  emptyText: {
-    fontSize: 16,
-    color: '#64748b',
-  },
-});
 
 export default DistributionListPage;

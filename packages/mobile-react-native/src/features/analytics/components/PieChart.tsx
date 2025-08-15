@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Dimensions } from 'react-native';
 import { PieChart as RNChartKitPieChart } from 'react-native-chart-kit';
-import { getAidTypeColor } from '@aidonic/shared/constants';
+import { getAidTypeColor, CHART_COLORS } from '../../../shared/styles';
 
 interface PieChartProps {
   data: Array<{ x: string; y: number }>;
@@ -29,7 +29,7 @@ const PieChart: React.FC<PieChartProps> = ({ data }) => {
           backgroundColor: '#ffffff',
           backgroundGradientFrom: '#ffffff',
           backgroundGradientTo: '#ffffff',
-          color: (opacity = 1) => `rgba(59, 130, 246, ${opacity})`,
+          color: (opacity = 1) => CHART_COLORS.primary,
         }}
         accessor="population"
         backgroundColor="transparent"

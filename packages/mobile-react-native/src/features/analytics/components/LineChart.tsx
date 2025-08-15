@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Dimensions } from 'react-native';
 import { LineChart as RNChartKitLineChart } from 'react-native-chart-kit';
-import { CHART_COLORS } from '@aidonic/shared/constants';
+import { CHART_COLORS } from '../../../shared/styles';
 
 interface LineChartProps {
   data: Array<{ x: string; y: number }>;
